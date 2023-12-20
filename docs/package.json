@@ -1,14 +1,14 @@
 {
-  "name": "learning-flutter",
+  "name": "learning-2023-devops",
   "version": "1.0.0",
-  "description": "Fluttertraining",
+  "description": "DevOps training",
   "authors": [
     {
       "name": "Gharbi Ibrahim",
       "email": "ibrahim.gharbi@worldline.com"
     }
   ],
-  "repository": "https://github.com/gbrah/learning-flutter",
+  "repository": "https://github.com/gbrah/learning-2023-devops",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"

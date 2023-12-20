@@ -7,14 +7,14 @@ import { defineUserConfig } from "vuepress";
 
 export default defineUserConfig({
   
-  base: "/learning-devops/",
+  base: "/learning-2023-devops/",
   port: 3000,
 
   head: [
-    ["link", { rel: "icon", href: "/learning-devops/favicon.ico" }],
+    ["link", { rel: "icon", href: "/learning-2023-devops/favicon.ico" }],
     [
       "link",
-      { rel: "manifest", href: "/learning-devops/manifest.webmanifest" },
+      { rel: "manifest", href: "/learning-2023-devops/manifest.webmanifest" },
     ],
     ["meta", { name: "theme-color", content: "#027DFD" }],
   ],
@@ -30,7 +30,7 @@ export default defineUserConfig({
 
   plugins: [
     seoPlugin({
-      hostname: "https://worldline.github.io/gbrah/learning-devops",
+      hostname: "https://worldline.github.io/gbrah/learning-2023-devops",
     }),
   ],
 });
