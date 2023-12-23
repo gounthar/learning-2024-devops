@@ -120,6 +120,10 @@ DevOps is not...
 * Equals to "Agile“
 * a Process, a Methodology, a Framework, a Tool
 
+### Why devOps ?
+
+TODO : vm + container enabled cloud pay as you go services, from monolith to micro services --> speed up and complexify delivery lifecycle
+
 ### A bit of History
 
 The historical roots of cloud computing, traced its emergence back to the 1950s with the inception of mainframe computing and the subsequent development of ARPANET, a precursor to the internet.
