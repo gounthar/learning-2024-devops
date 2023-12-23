@@ -1,24 +1,55 @@
 # Let's start 
 
 
+## Developers and IT Operators ?
+
+Please list missions of Developers and IT operators from [RFI](https://en.wikipedia.org/wiki/Request_for_proposal) / [RFP](https://en.wikipedia.org/wiki/Request_for_information) to the release of an IT service.
+
+![qrcode](../assets/images/qr_board.png)
+
+[Fill up here](https://awl.li/devops)
+
+
 ## Plan
 
 ::: details
 
 - Introduction
-
-- DevOps overview
+    * What is devOps ?
     * Definition
-    * Role-playing game
+    * A bit of history
+    * Architecture
 
-- Virtualization & Containerization 
+- Role-playing game
+
+- Shell for devOps
+    * Linux Filesystem ( tree, rights)
+    * Basic commands ( cd,ls, pwd)
+    * Package managers ( apt, yum, dnf, pacman)
+    * Basic network debug ( ping,ssh, telnet, wget)
+
+- Virtualization
     * Definition
-    * Practical work, make your first image
-    * An introduction to orchestration
+    * HypervisorType II
+    * Networks
+    * Scripting (VBox Manage)
+    * Vagrant
+    * HypervisorType I
+
+-  Containerization 
+    * Definition
+    * Basic usage
+    * Images
+    * Registries
+    * Multi-container with docker compose
+
+-  Orchestration
+    * Definition
+    * Rancher UI
 
 - Continuous integration/delivery (CI/CD) 
     - Definition
-    - Create a CI/CD platform
+    - Create a containerized CI/CD platform (Gitlab)
     - CI/CD for devs
         * Build
         * Measure
@@ -26,21 +57,23 @@
         * Deploy
         * Monitor
 
-- Discover the Cloud
-    * VMs
+- Micro-services
+    * Definition
+    * Architecture
+    * API Gateways
+
+-  Provisionning
+    * Ansible
+    * Terraform
+    * with Vagrant
+    * with Gitlab
+
+- Discover the Cloud (Gcloud)
+    * VMs ( compute engine)
     * Kubernetes engine
     * Container based ( Cloud run)
     * Serverless
-
-- Discover provisionning
-    * Ansible
-    * Terraform
-
-- Discover orchestration
-    * Rancher UI
-
 ::: 
-
 
 ## Prerequisites
 
@@ -63,11 +96,35 @@ Engage in practical exercises, real-world case studies, and immersive learning, 
 
 ### What is DevOps ?
 
+### Definition
+
+![loop](../assets/images/devops_loop.png)
+
+ It's **cultural** and **professional movement** that stresses **communication**, **collaboration**, integration, and 
+ **automation** to improve the flow of work between **software developers (Dev)**  and **IT operations professionals (Ops)** while 
+ automating the process of software delivery and infrastructure changes.
+It aims at establishing culture and environment where **building, testing and releasing softwares, can happen rapidly**, frequently and more reliably.”
+
+DevOps is...
+* Continuous delivery
+* Monitoring
+* a person who can perform both Dev and Ops roles
+* a team of developers and operation staff
+* a movement, a philosophy, a way of thinking
+* a culture movement
+* means cross skilling people
+
+DevOps is not...
+* A Developers managing Production
+* All About Automation
+* Equals to "Agile“
+* a Process, a Methodology, a Framework, a Tool
+
 ### A bit of History
 
 The historical roots of cloud computing, traced its emergence back to the 1950s with the inception of mainframe computing and the subsequent development of ARPANET, a precursor to the internet.
 
-Pivotal moments in cloud evolution, include the rise of virtualization in the 1990s, which transformed server utilization, and the introduction of Amazon Web Services (AWS) in the mid-2000s, revolutionizing access to cloud services. It permit to enable key models such as Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS) that have shaped the cloud landscape.
+Pivotal moments in cloud evolution, include the rise of virtualization in the 1990s, which transformed server utilization, and the introduction of Amazon Web Services (AWS) in the mid-2000s, revolutionizing access to cloud services. It permit to enable key models such as Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS) that have shaped the cloud landscape and also pay as you go business model
 
 Another main evolution enabled devops pratices is the evolution of computer containers, starting from their inception. The historical timeline, begin with early Unix days, emphasizing the importance of process isolation to maximize computing resources.
 
@@ -91,10 +148,9 @@ Join this course to understand and use softwares based on these historical miles
 
 These models represent different layers of cloud services, providing varying levels of abstraction from infrastructure to applications, catering to different needs and preferences of businesses and users.
 
-## Exercise
+### 🧪 Exercises
 
 To understand the differences between IaaS, PaaS, and SaaS and onpremise by analyze real-world 
-
 Here is a list of application services :
 
 |                           |                           |                           |
@@ -112,29 +168,15 @@ Here is a list of application services :
 | Heroku                    | GitLab                    |                           |
 
 
-Categorize each service or application they found into one of the three cloud service models: IaaS, PaaS, or SaaS.
-justify the categorizations. Why do they think a particular service fits into a specific model?
+**Categorize each service or application into one of the three cloud service models (IaaS, PaaS, or SaaS) or as OnPremise service. Justify the categorizations.**
+
+![qrcode2](../assets/images/qr_arch.png)
+
+[Fill up here](https://awl.li/architecture)
+
+
 
 :::details solutions
-
-| On-Premise (IaaS)   | On-Premise (PaaS)         | SaaS                   |
-|---------------------|---------------------------|------------------------|
-| Jenkins             | Google App Engine         | Oracle Cloud           |
-| Cisco UCS           | Atlassian Bitbucket Server| Microsoft Azure        |
-| Docker              | Red Hat OpenShift         | Dropbox                |
-| VMware vSphere      | AWS Elastic Beanstalk     | Alibaba Cloud          |
-| OpenStack           | Microsoft Azure App Service| IBM Cloud             |
-| DigitalOcean        | Heroku                    | Firebase               |
-| Microsoft Hyper-V   | GitLab                    | Salesforce             |
-|                     |                           | Slack                  |
-|                     |                           | Rackspace              |
-|                     |                           | Microsoft Office 365   |
-|                     |                           | Gmail                  |
-|                     |                           | Zoom                   |
-|                     |                           | Zendesk                |
-|                     |                           | HubSpot                |
-|                     |                           | Google Cloud Platform (GCP)|
-
 
 IaaS Examples : Offer infrastructure components like virtual machines, storage, and networking resources.
 - Amazon Web Services (AWS)
@@ -175,9 +217,7 @@ On-Premise Solutions:
 - Microsoft Hyper-V: On-premise virtualization solution for - Windows servers.
 - Cisco UCS (Unified Computing System): In-house computing and networking solution.
 - Atlassian Bitbucket Server: On-premise version control repository management.
-
 :::
-
 
 ## 📖 Further reading
 - De chroot à Docker, Podman, et maintenant les modules Wasm, 40 ans d'évolution de la conteneurisation by Thomas SCHWENDER
