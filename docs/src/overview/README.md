@@ -7,7 +7,7 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 
 ![qrcode](../assets/images/qr_board.png)
 
-[Fill up here](https://awl.li/devops)
+[https://awl.li/devops](https://awl.li/devops)
 
 
 ## Plan
@@ -236,7 +236,7 @@ Here is a list of application services :
 
 ![qrcode2](../assets/images/qr_arch.png)
 
-[Fill up here](https://awl.li/architecture)
+[https://awl.li/architecture](https://awl.li/architecture)
 
 :::details solutions
 
