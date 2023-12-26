@@ -161,18 +161,6 @@ Unique tool upon:
 * **Storage Backends** (devicemapper, AUFS, BTRFS, …) providing :
    * **Layered file system**: root filesystems are created using “copy-on-write”, which makes deployment extremely fast, memory-cheap and disk-cheap.
 
-
-### Images
-
-A Docker image is a self-contained, immutable snapshot or template that includes an application's code, dependencies, and configuration, serving as the foundation to create and run containers.
-
-### Registries
-
-![registry](../assets/images/registry.png)
-
-`Registries` store Docker **images**, acting as **repositories** where users can push, pull, and manage images. 
-`Docker Hub` is a popular public registry, while private registries offer secure storage for proprietary or sensitive images within organizations.
-
 ###  Basic usage
 
 Containerization platforms like Docker provide tools to create, deploy, and manage containers. Users can build containers from images, run them as instances, manage their lifecycle, and interact with them using container-specific commands.
@@ -268,9 +256,10 @@ Containerization platforms like Docker provide tools to create, deploy, and mana
   docker stop [OPTIONS] CONTAINER [CONTAINER...]
   ```
 
+
 ## 🧪 Exercise 1
 
-Pull HTTPS apache server image from docker HUB and start your first web server containerized. Test it on your browser
+Pull HTTP apache server image from docker HUB and start your first web server containerized. Test it on your browser
 
 ::: details view the answer
 ```bash
@@ -282,13 +271,204 @@ docker run -d -p 8080:80 httpd
 ```
 :::
 
-### Custom image
+### Custom image and dockerFile
 
-### Multi-container 
+#### Definition
+
+A Docker image is a self-contained, immutable snapshot or template that includes an application's code, dependencies, and configuration, serving as the foundation to create and run containers.
+
+#### Create a dockerFile
+
+``` dockerfile 
+# Base Image
+FROM ubuntu:latest
+
+# Maintainer Information
+LABEL maintainer="Your Name <your@email.com>"
+
+# Install Necessary Packages
+RUN apt-get update && \
+    apt-get install -y \
+    package1 \
+    package2
+
+# Set Working Directory
+WORKDIR /app
+
+# Copy Files/Directory to Container
+COPY . /app
+
+# Expose Ports
+EXPOSE 80
+
+# Define Environment Variables
+ENV ENV_VAR_NAME=value
+
+# Run Application
+CMD [ "executable" ]
+```
+
+1. `FROM ubuntu:latest`
+- **`FROM`**: Specifies the base image for the new image being built.
+- **`ubuntu:latest`**: Base image, in this case, Ubuntu, and `latest` tag referring to the most recent version.
+
+2. `LABEL maintainer="Your Name <your@email.com>"`
+- **`LABEL`**: Adds metadata to the image.
+- **`maintainer`**: Custom label key identifying the maintainer's information.
+
+3. `RUN apt-get update && apt-get install -y package1 package2`
+- **`RUN`**: Executes commands within the container during the build process.
+- **`apt-get update && apt-get install -y package1 package2`**: Updates package lists and installs specified packages.
+
+4. `WORKDIR /app`
+- **`WORKDIR`**: Sets the working directory for subsequent commands in the Dockerfile.
+- **`/app`**: Directory path within the container.
+
+5. `COPY . /app`
+- **`COPY`**: Copies files or directories from the host machine to the container.
+- **`.`**: Represents the current directory on the host.
+- **`/app`**: Destination directory in the container.
+
+6. `EXPOSE 80`
+- **`EXPOSE`**: Informs Docker that the container listens on specific network ports at runtime.
+- **`80`**: Port number exposed by the container.
+
+7. `ENV ENV_VAR_NAME=value`
+- **`ENV`**: Sets environment variables inside the container.
+- **`ENV_VAR_NAME=value`**: Name-value pair for an environment variable.
+
+8. `CMD [ "executable" ]`
+- **`CMD`**: Specifies the default command to be executed when a container starts.
+- **`[ "executable" ]`**: Command and its arguments to run when the container starts.
+
+
+#### Building and Pushing an Image to Docker Hub
+
+```bash
+# Build Docker Image
+docker build -t yourusername/repositoryname:tag .
+
+# Log in to Docker Hub (Enter your Docker Hub credentials)
+docker login
+
+# Push Image to Docker Hub
+docker push yourusername/repositoryname:tag
+```
+
+Replace placeholders:
+
+- `yourusername`: Your Docker Hub username.
+- `repositoryname`: Name for your repository on Docker Hub.
+- `tag`: Tag/version for your image (e.g., `latest`).
+
+## 🧪 Exercise 2
+
+Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
+
+::: details view the answer
+```bash
+
+```
+:::
+
+### Registry
+
+![registry](../assets/images/registry.png)
+
+`Registries` store Docker **images**, acting as **repositories** where users can push, pull, and manage images. 
+`Docker Hub` is a popular public registry, while private registries offer secure storage for proprietary or sensitive images within organizations.
+
+## 🧪 Exercise 3
+
+Create your own registry with a docker image and try to push your HTTPD image to your repository
+
+::: details view the answer
+```bash
+
+```
+:::
+
+::: tip
+You can use other repository services such as [Harbor](https://goharbor.io/)
+:::
+
+
+## Multi-container 
+
+![docker-compose](../assets/images/docker-compose.png)
 
 Docker Compose is a tool for defining and running multi-container Docker applications. It uses a YAML file (docker-compose.yml) to configure services, allowing users to define multiple containers, their configurations, networks, and volumes in a single file.
 
-This section covers the fundamental concepts of containerization, including its definition, basic usage with Docker commands, the role of images and registries, and the orchestration of multi-container applications using Docker Compose.
+### docker-compose.yml file
+
+A Docker Compose file (`docker-compose.yml`) is used to define and run multi-container Docker applications. It's structured with key-value pairs and various keywords with YAML language defining each services
+
+```yaml
+version: '3.8'
+
+services:
+  service1:
+    image: imagename:tag
+    ports:
+      - "host_port:container_port"
+    volumes:
+      - "host_path:container_path"
+    environment:
+      - KEY=VALUE
+    command: command_to_run
+```
+
+- **`version`**: Specifies the Docker Compose file version.
+- **`services`**: Defines the services or containers to be created and run.
+- **`image`**: Specifies the image to use for the service.
+- **`ports`**: Maps ports from the host to the container.
+- **`volumes`**: Mounts volumes from the host to the container.
+- **`environment`**: Sets environment variables for the service.
+- **`command`**: Overrides the default command for the service.
+
+### Basic commands
+
+- **Start Services Defined in `docker-compose.yml`:**
+  ```bash
+  docker-compose up
+  ```
+
+- **Start Services in Detached Mode:**
+  ```bash
+  docker-compose up -d
+  ```
+
+- **Stop Services:**
+  ```bash
+  docker-compose down
+  ```
+
+## 🧪 Exercise 4
+
+Convert your previous HTTPD image  and container with a docker-compose.yml config
+
+::: details view the answer
+```bash
+
+```
+:::
+
+## 🧪 Exercise 5
+
+![docker](../assets/images/exercise_docker.jpg)
+
+Create a LAMP achitecture with 2 computers over a WiFi network as follows with :
+* an Apache / Nginx service
+* a PHP service
+* a mariaDB or MongoDB service
+* a PHPMyAdmin or mongo-express
+
+::: details view the answer
+```bash
+
+```
+:::
+
 
 ## 📖 Further reading
 - De chroot à Docker, Podman, et maintenant les modules Wasm, 40 ans d'évolution de la conteneurisation by Thomas SCHWENDER

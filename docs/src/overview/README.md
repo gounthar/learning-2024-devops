@@ -162,10 +162,6 @@ It starting up a tug of war between developpers and Ops :
 | Freedom to create and deploy apps fast           | Quickly and fexibly respond to changing needs     |
 | Define and package application needs        | Standardize, secure, and manage     |
 
-
-
-
-
 ### A bit of History
 
 The historical roots of cloud computing, traced its emergence back to the 1950s with the inception of mainframe computing and the subsequent development of ARPANET, a precursor to the internet.
@@ -178,25 +174,47 @@ Important milestones such as chroot in 1979, which enabled application isolation
 
 Lastly, the groundbreaking introduction of usernamespace into the Linux kernel in 2013, marked the inception of Docker. This influential tool simplifies container creation and management based on Linux kernel functionalities. Through these advancements, a new era in application deployment was ushered in, transforming the landscape of computing.
 
-Join this course to understand and use softwares based on these historical milestones that shaped the creation and efficient management of cloud computing and computer containers, opening doors to innovative approaches in application deployment
 
-### Systems architecture
+### Software stack architecture
 
 ![architecture](../assets/images/architecture.png)
 
-- **On-Premises:** This refers to the traditional method of hosting and managing computing resources within an organization's physical location or data center. With on-premises infrastructure, all hardware, software, servers, networking equipment, and data storage are maintained and managed by the organization's IT staff.
+#### Layers of a Software Stack:
 
-- **Infrastructure as a Service (IaaS):** IaaS is a cloud computing model that provides virtualized computing resources over the internet. It offers scalable and on-demand resources such as virtual machines, storage, and networking. Users can rent these resources on a pay-as-you-go basis, allowing for flexibility and cost-efficiency without having to manage the physical hardware.
+`Application Layer`: User-facing applications like web browsers, business software.
 
-- **Platform as a Service (PaaS):** PaaS is a cloud computing service that provides a platform allowing customers to develop, run, and manage applications without dealing with the underlying infrastructure. It typically includes tools for building, testing, and deploying applications. PaaS offers a framework that simplifies the development process, enabling developers to focus on coding rather than managing hardware or software updates.
+`Data Layer`: Manages and stores data: databases, data lakes, file storage systems.
 
-- **Software as a Service (SaaS):** SaaS delivers software applications over the internet on a subscription basis. It allows users to access and use software hosted in the cloud without needing to install or maintain it on their devices. Examples of SaaS include email services, customer relationship management (CRM) tools, and productivity software like Google Workspace or Microsoft 365.
+`Runtime Layer`: Environment for executing software: Java Runtime Environment, .NET Framework.
+
+`Middleware Laye`r`: Intermediary layer: web servers, application servers, message brokers, APIs.
+
+`Operating System Laye`r: Manages hardware resources: Windows, Linux, macOS.
+
+`Virtualization Layer`: Abstracts hardware: virtual machines (VMs), containers.
+
+`Servers Layer`: Provides computational resources: application servers, database servers.
+
+`Storage Layer`: Manages data storage: block storage, object storage, databases.
+
+`Networking Layer`: Handles communication: LANs, WANs, routers, switches, TCP/IP.
+
+#### Service models
+
+**On-Premises:** This refers to the traditional method of hosting and managing computing resources within an organization's physical location or data center. With on-premises infrastructure, all hardware, software, servers, networking equipment, and data storage are maintained and managed by the organization's IT staff.
+
+**Infrastructure as a Service (IaaS):** IaaS is a cloud computing model that provides virtualized computing resources over the internet. It offers scalable and on-demand resources such as virtual machines, storage, and networking. Users can rent these resources on a pay-as-you-go basis, allowing for flexibility and cost-efficiency without having to manage the physical hardware.
+
+**Platform as a Service (PaaS):** PaaS is a cloud computing service that provides a platform allowing customers to develop, run, and manage applications without dealing with the underlying infrastructure. It typically includes tools for building, testing, and deploying applications. PaaS offers a framework that simplifies the development process, enabling developers to focus on coding rather than managing hardware or software updates.
+
+**Software as a Service (SaaS):** SaaS delivers software applications over the internet on a subscription basis. It allows users to access and use software hosted in the cloud without needing to install or maintain it on their devices. Examples of SaaS include email services, customer relationship management (CRM) tools, and productivity software like Google Workspace or Microsoft 365.
 
 These models represent different layers of cloud services, providing varying levels of abstraction from infrastructure to applications, catering to different needs and preferences of businesses and users.
 
 ### 🧪 Exercises
 
-To understand the differences between IaaS, PaaS, and SaaS and onpremise by analyze real-world 
+To understand the differences between IaaS, PaaS, and SaaS and onpremise by analyze real-world applications
+
 Here is a list of application services :
 
 |                           |                           |                           |
@@ -219,8 +237,6 @@ Here is a list of application services :
 ![qrcode2](../assets/images/qr_arch.png)
 
 [Fill up here](https://awl.li/architecture)
-
-
 
 :::details solutions
 

@@ -53,6 +53,13 @@ These directories form the backbone of a Linux system, encompassing critical con
     └── /var/cache              # Cached data from installed packages.
 ```
 
+You can displays the directory structure in a tree-like format.
+
+**Example:**
+```bash
+tree
+```
+
 
 ## File permissions 
 
@@ -109,17 +116,6 @@ Ownership is altered using `chown`. To change the owner of `example.txt` to `new
 chown newowner example.txt
 ```
 
-### Octal notation
-
-Octal notation simplifies permission settings using three digits, each representing permission types for owner, group, and others.
-
-For instance:
-- `chmod 755 file.txt` sets:
-  - Owner: Read (4) + Write (2) + Execute (1) = 7
-  - Group and Others: Read (4) + Execute (1) = 5
-
-This notation streamlines permission management, facilitating precise access control in Linux.
-
 ```bash
 #!/bin/bash
 
@@ -132,12 +128,16 @@ chown newowner example.txt
 
 This script demonstrates using `chmod` and `chown` to modify file permissions and ownership, ensuring proper management and security within a Linux environment.
 
-You can also Displays the directory structure in a tree-like format.
+### Octal notation
 
-**Example:**
-```bash
-tree
-```
+Octal notation simplifies permission settings using three digits, each representing permission types for owner, group, and others.
+
+For instance:
+- `chmod 755 file.txt` sets:
+  - Owner: Read (4) + Write (2) + Execute (1) = 7
+  - Group and Others: Read (4) + Execute (1) = 5
+
+This notation streamlines permission management, facilitating precise access control in Linux.
 
 ## Basic Commands
 
@@ -241,7 +241,7 @@ pacman -Syu
 **Removing Packages:** 
 - `pacman -R package_name`: Removes a package.
 
-## Basic Network Debugging
+## Network Debugging
 
 #### `ping`
 

@@ -1,4 +1,4 @@
-# Discover the Cloud (Gcloud)
+# Cloud quickstart
     
 ## VMs (Compute Engine)
 
