@@ -122,7 +122,49 @@ DevOps is not...
 
 ### Why devOps ?
 
-TODO : vm + container enabled cloud pay as you go services, from monolith to micro services --> speed up and complexify delivery lifecycle
+Here are 4 trends that impulse devOps mouvement.
+
+#### Cloud emergence
+![loop](../assets/images/trend1.png)
+
+The `cloud` refers to a network of remote servers accessed over the internet to store, manage, and process data, providing on-demand computing resources and services without requiring direct local server infrastructure.
+
+#### From monolith to distributed services
+![loop](../assets/images/trend2.png)
+
+A `monolithic application` is a software architecture where all components and functionalities are integrated and interconnected into a single, indivisible unit, typically running as a single process.
+
+ex : A typical example of a Java Enterprise Edition (JEE) application could be an online banking system that uses JEE technologies like Servlets, JavaServer Pages (JSP), Enterprise JavaBeans (EJB), and Java Persistence API (JPA) to handle user authentication, transaction processing, account management, and database interactions within a scalable and secure environment.
+
+a `Distributed architecture` refers to a system design where multiple components or services are deployed across different computers or networks, working together to achieve a common goal. These components communicate and coordinate with each other through networks, enabling scalability, fault tolerance, and efficient resource utilization across various locations.
+
+#### Multi / Micro services architecture
+![loop](../assets/images/trend3.png)
+
+A `multi-services app` typically refers to a software application that integrates or provides access to multiple distinct functionalities, features, or services within a single platform or interface, allowing users to access various services or capabilities without needing separate applications for each function. These apps often offer a range of services like messaging, payments, social networking, and more, catering to diverse user needs within a unified environment.
+
+A `microservices app` is a software architecture that structures an application as a collection of loosely coupled, independently deployable services, each focused on specific business capabilities and communicating through well-defined APIs. These services are typically small, scalable, and can be developed, deployed, and maintained independently, allowing for flexibility, agility, and easier management of complex systems.
+
+![ms](../assets/images/ms.png)
+
+#### Continuous delivery / integration
+![loop](../assets/images/trend4.png)
+
+`Continuous Integration (CI)` is a software development practice where developers frequently integrate their code changes into a shared repository. Each integration triggers automated build and test processes to detect errors early.
+
+`Continuous Delivery (CD)` extends CI by automating the delivery process, allowing applications to be deployed to various environments, such as testing, staging, and production, in a consistent and reliable manner. This enables teams to release software updates frequently and reliably, reducing the time between writing code and delivering it to users.
+
+
+It starting up a tug of war between developpers and Ops :
+
+| Developers     | IT Operations  |
+|----------------|----------------|
+| Freedom to create and deploy apps fast           | Quickly and fexibly respond to changing needs     |
+| Define and package application needs        | Standardize, secure, and manage     |
+
+
+
+
 
 ### A bit of History
 
@@ -138,7 +180,7 @@ Lastly, the groundbreaking introduction of usernamespace into the Linux kernel i
 
 Join this course to understand and use softwares based on these historical milestones that shaped the creation and efficient management of cloud computing and computer containers, opening doors to innovative approaches in application deployment
 
-### Architecture
+### Systems architecture
 
 ![architecture](../assets/images/architecture.png)
 
@@ -224,9 +266,6 @@ On-Premise Solutions:
 :::
 
 ## 📖 Further reading
-- De chroot à Docker, Podman, et maintenant les modules Wasm, 40 ans d'évolution de la conteneurisation by Thomas SCHWENDER
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dikQOyAzdS4" title="De chroot à Docker, Podman, et maintenant les modules Wasm, 40 ans d'évolution de la conteneurisation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 

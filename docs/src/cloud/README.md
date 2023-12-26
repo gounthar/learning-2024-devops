@@ -17,3 +17,5 @@ Cloud Run is a fully managed serverless platform on Google Cloud that enables de
 Google Cloud offers various serverless computing services, allowing developers to build and deploy applications without managing underlying infrastructure. Services like Cloud Functions and Cloud Run enable developers to write and deploy code that responds to events or HTTP requests, providing a scalable and cost-efficient way to run applications.
 
 This section introduces key offerings within Google Cloud (Gcloud), including VMs through Compute Engine, Kubernetes Engine for managing containerized applications, the serverless nature of Cloud Run, and other serverless computing services available on the platform.
+
+## 📖 Further reading

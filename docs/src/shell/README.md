@@ -14,12 +14,6 @@ In a Linux distribution, several critical directories hold essential system file
 
 These directories form the backbone of a Linux system, encompassing critical configurations, system data, executable files, and user-specific information essential for the system's functionality and user experience.
 
-In Linux distributions, file permissions and ownership are managed through a robust system known as "rights management." This system controls access to files and directories, ensuring security and privacy across the system. Each file and directory has associated permissions determining who can read, write, or execute them. These permissions are categorized for three types of users: the file owner, the user group associated with the file, and others.
-
-File permissions consist of three main components: read, write, and execute, denoted by "r," "w," and "x," respectively. Permissions are represented in a series of three characters for each category of users (owner, group, and others) and can be modified using commands like `chmod` in the terminal. In addition to permissions, ownership plays a crucial role. Each file and directory has an owner and a group associated with it. The owner can modify permissions and change ownership, while members of the associated group might have specific access rights. This system ensures that only authorized users or processes can access or modify specific files, enhancing security.
-
-The inode, a fundamental concept in Unix-based file systems, plays a key role in managing files. An inode, short for "index node," is a data structure that stores metadata about a file, excluding the file's name and actual data content. It contains information such as permissions, ownership, file type, timestamps, and pointers to the actual data blocks on the disk. Inodes help the operating system locate and manage files efficiently. They are crucial in file system navigation, allowing quick access and modification of file metadata while optimizing storage by reducing duplicated information about files. As files are created, modified, or deleted, the inodes are updated to reflect these changes, facilitating file system operations and organization.
-
 ```bash
 ├── bin                         # Essential system binaries.
 │   ├── /bin                    # Core command binaries.
@@ -59,22 +53,90 @@ The inode, a fundamental concept in Unix-based file systems, plays a key role in
     └── /var/cache              # Cached data from installed packages.
 ```
 
-#### `tree`
 
-Displays the directory structure in a tree-like format.
+## File permissions 
+
+In Linux distributions, file permissions and ownership are managed through a robust system known as "rights management." This system controls access to files and directories, ensuring security and privacy across the system. Each file and directory has associated permissions determining who can read, write, or execute them. These permissions are categorized for three types of users: the file owner, the user group associated with the file, and others.
+
+### Read file permisions
+
+When you use `ls -l` in a terminal, you'll see an output similar to this:
+
+```bash
+-rwxr-xr-- 1 user group 4096 Jan 1 12:00 example.txt
+```
+
+Let's break down what each part of this output signifies:
+
+- **File Permissions:** The `-rwxr-xr--` part represents permissions for the file.
+  - The first character indicates file type (`-` for a regular file).
+  - The next nine characters (`rwxr-xr--`) denote permissions for owner, group, and others.
+    - The first three characters represent owner permissions (`rwx`).
+    - The next three represent group permissions (`r-x`).
+    - The last three represent permissions for others (`r--`).
+
+- **File Owner and Group:** The `user` is the file's owner, and `group` is the group associated with the file.
+
+- **File Size, Date, and Name:** The `4096 Jan 1 12:00 example.txt` part shows the file size, modification date, and file name.
+
+#### Interpreting Permissions
+
+- `r` denotes read permission.
+- `w` denotes write permission.
+- `x` denotes execute permission.
+- `-` denotes lack of a specific permission.
+
+For instance, in `-rwxr-xr--`:
+- The owner (`rwx`) has read, write, and execute permissions.
+- The group (`r-x`) has read and execute permissions.
+- Others (`r--`) have only read permission.
+
+This visual representation from `ls -l` allows you to quickly interpret file permissions and understand who has access to read, write, and execute the file.
+
+### Changing Permissions
+
+Permissions are modified using commands like `chmod`. For example, granting read and write permissions to the owner and group of a file named `example.txt`:
+
+```bash
+chmod ug+rw example.txt
+```
+
+### Ownership Management
+
+Ownership is altered using `chown`. To change the owner of `example.txt` to `newowner`:
+
+```bash
+chown newowner example.txt
+```
+
+### Octal notation
+
+Octal notation simplifies permission settings using three digits, each representing permission types for owner, group, and others.
+
+For instance:
+- `chmod 755 file.txt` sets:
+  - Owner: Read (4) + Write (2) + Execute (1) = 7
+  - Group and Others: Read (4) + Execute (1) = 5
+
+This notation streamlines permission management, facilitating precise access control in Linux.
+
+```bash
+#!/bin/bash
+
+# Changing permissions
+chmod ug+rw example.txt
+
+# Changing ownership
+chown newowner example.txt
+```
+
+This script demonstrates using `chmod` and `chown` to modify file permissions and ownership, ensuring proper management and security within a Linux environment.
+
+You can also Displays the directory structure in a tree-like format.
 
 **Example:**
 ```bash
 tree
-```
-
-#### `chmod`
-
-Modify file/directory permissions.
-
-**Example:**
-```bash
-chmod +x script.sh
 ```
 
 ## Basic Commands

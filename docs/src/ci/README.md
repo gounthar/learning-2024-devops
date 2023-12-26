@@ -33,3 +33,5 @@ The deployment phase involves automating the process of releasing applications i
 Continuous monitoring post-deployment ensures that the application functions as expected and helps identify any performance or functional issues.
 
 This section covers the concept of CI/CD, emphasizing its automation benefits and the role of GitLab as a comprehensive platform for implementing CI/CD pipelines. It also outlines the stages of CI/CD for developers, including building, measuring, testing, deploying, and monitoring software applications.
+
+## 📖 Further reading
