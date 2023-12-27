@@ -10,8 +10,16 @@ actions:
 features:
   - title: 1. Introduction
     details:  What is DevOps? - History - Architecture
-  - title: 2.  🚧 Under building 
-    details: coming soon...
+  - title: 2. Shell for DevOps
+    details: Shell basics - Command structure - Scripting techniques
+  - title: 3. Virtualization
+    details: Hypervisors  types, vagrant
+  - title: 4. Containerization
+    details: Container vs. VM - Docker usage 
+  - title: 5. CI/CD
+    details: CI principles - Gitlab service - Pipeline implementation
+  - title: 6. Provisioning
+    details: Infrastructure as Code (IaC), Configuration management tools
 footer: Worldline © 2023 | tech at Worldline
 ---
 

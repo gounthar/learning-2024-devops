@@ -1,4 +1,4 @@
-# Cloud quickstart
+# (Cloud quickstart)
     
 ## VMs (Compute Engine)
 
