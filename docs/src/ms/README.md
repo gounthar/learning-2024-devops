@@ -14,4 +14,9 @@ API Gateways serve as the entry point for client requests in a microservices arc
 
 This section introduces the concept of Microservices, emphasizing their architectural approach based on decentralized, independent services. It highlights the advantages of this approach in terms of flexibility and scalability, along with the role of API Gateways in managing communication between microservices.
 
+## Exercises
+
+![arch1](../assets/images/multi-services1.jpg)
+![arch2](../assets/images/multi-services1.jpg)
+
 
