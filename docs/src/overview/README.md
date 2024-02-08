@@ -1,6 +1,5 @@
 # Let's start 
 
-
 ## 🧪  Developers and IT Operators ?
 
 Please list missions of Developers and IT operators from [RFI](https://en.wikipedia.org/wiki/Request_for_proposal) / [RFP](https://en.wikipedia.org/wiki/Request_for_information) to the release of an IT service.
@@ -10,7 +9,7 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 [https://awl.li/devops](https://awl.li/devops)
 
 
-## Plan
+## Plan (http://awl.li/learning-devops)
 
 ::: details
 
@@ -150,9 +149,9 @@ A `microservices app` is a software architecture that structures an application 
 #### Continuous delivery / integration
 ![loop](../assets/images/trend4.png)
 
-`Continuous Integration (CI)` is a software development practice where developers frequently integrate their code changes into a shared repository. Each integration triggers automated build and test processes to detect errors early.
+`Continuous Delivery (CD)` is a software development practice where developers frequently integrate their code changes into a shared repository. Each integration triggers automated build and test processes to detect errors early.
 
-`Continuous Delivery (CD)` extends CI by automating the delivery process, allowing applications to be deployed to various environments, such as testing, staging, and production, in a consistent and reliable manner. This enables teams to release software updates frequently and reliably, reducing the time between writing code and delivering it to users.
+`Continuous Integration (CI)` Integration in the context of CI/CD involves aligning and merging development efforts from various stages (such as development, staging, and production) to ensure that code changes seamlessly transition through these environments, maintaining consistency and reliability.
 
 
 It starting up a tug of war between developpers and Ops :

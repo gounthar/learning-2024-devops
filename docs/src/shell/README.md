@@ -243,7 +243,7 @@ pacman -Syu
 
 ## Network Debugging
 
-#### `ping`
+### `ping`
 
 Test connectivity to a remote host.
 
@@ -252,7 +252,7 @@ Test connectivity to a remote host.
 ping google.com
 ```
 
-#### `ssh`
+### `ssh`
 
 Securely connect to a remote server.
 
@@ -261,7 +261,7 @@ Securely connect to a remote server.
 ssh username@hostname
 ```
 
-#### `telnet`
+### `telnet`
 
 Communicate with another host using the Telnet protocol (less secure).
 
@@ -270,13 +270,89 @@ Communicate with another host using the Telnet protocol (less secure).
 telnet example.com 80
 ```
 
-#### `wget`
+### `wget`
 
 Retrieve content from web servers via HTTP, HTTPS, FTP.
 
 **Example:**
 ```bash
 wget https://example.com/file.tar.gz
+```
+
+### `ip`
+
+The `ip` command is used for showing/manipulating routing, network devices, interfaces, and tunnels in Unix-like operating systems.
+
+To display network interfaces and their addresses, use the following command:
+
+```bash
+ip address show
+```
+
+Output:
+
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+   inet 127.0.0.1/8 scope host lo
+      valid_lft forever preferred_lft forever
+   inet6 ::1/128 scope host
+      valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+   inet 192.168.1.100/24 brd 192.168.1.255 scope global eth0
+      valid_lft forever preferred_lft forever
+   inet6 fe80::5054:ff:fe11:2233/64 scope link
+      valid_lft forever preferred_lft forever
+```
+
+
+### `dig`
+
+The `dig` command is used for querying DNS servers for various DNS records.
+
+To query DNS records for a domain, use the following command:
+
+```bash
+dig example.com
+```
+
+Output:
+
+```
+; <<>> DiG 9.10.6 <<>> example.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58283
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;example.com.            IN  A
+
+;; ANSWER SECTION:
+example.com.        604800  IN  A   93.184.216.34
+
+;; Query time: 1 msec
+;; SERVER: 192.168.1.1#53(192.168.1.1)
+;; WHEN: Mon Feb 07 18:23:10 PST 2024
+;; MSG SIZE  rcvd: 55
+```
+
+### `host`
+
+The `host` command is used to perform DNS lookups. It retrieves domain name to IP address mappings by querying DNS servers.
+
+To perform a DNS lookup for a domain name, use the following command:
+
+```bash
+host example.com
+```
+
+Output:
+
+```
+example.com has address 93.184.216.34
+example.com has IPv6 address 2606:2800:220:1:248:1893:25c8:1946
 ```
 
 ## Others
@@ -354,6 +430,7 @@ git clone repository_url
 
 - `clone`: Clone a repository.
 - `add`: Add file contents to the index.
+
 
 ## Exercises
 
