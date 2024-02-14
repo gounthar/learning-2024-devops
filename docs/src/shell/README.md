@@ -270,6 +270,31 @@ Communicate with another host using the Telnet protocol (less secure).
 telnet example.com 80
 ```
 
+
+###  `netstat` 
+
+The `netstat` command is a network utility tool used to display network connections, routing tables, interface statistics. It provides information about network connections and routing tables, which can be useful for troubleshooting network-related issues.
+
+Display all TCP and UDP connections:
+```sh
+netstat -a
+```
+
+Display TCP connections with numerical addresses:
+```sh
+netstat -t -n
+```
+
+Display routing table:
+```sh
+netstat -r
+```
+
+Display listening TCP sockets:
+```sh
+netstat -l -t
+```
+
 ### `wget`
 
 Retrieve content from web servers via HTTP, HTTPS, FTP.
@@ -623,7 +648,7 @@ Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Ser
 
 ![onpremise](../assets/images/onpremise.png)
 
-Use `ping`, `telnet`, `ip` during your services deployment
+Use `ping`, `telnet`, `ip`, `netstat` during your services deployment
 
 
 
