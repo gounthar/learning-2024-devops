@@ -25,7 +25,7 @@ export default defineUserConfig({
         sidebar: [
           { text: 'Home', link: '/' },
           "/overview/",
-          //"/game/",
+          "/game/",
           "/shell/",
           "/virt/", 
           //"/container/", 
