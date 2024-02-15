@@ -438,7 +438,7 @@ sudo systemctl status mon_service.timer
 
 ## Network Debugging
 
-### `ping`
+#### `ping`
 
 Test connectivity to a remote host.
 
@@ -447,7 +447,7 @@ Test connectivity to a remote host.
 ping google.com
 ```
 
-### `ssh`
+#### `ssh`
 
 Securely connect to a remote server.
 
@@ -456,7 +456,7 @@ Securely connect to a remote server.
 ssh username@hostname
 ```
 
-### `telnet`
+#### `telnet`
 
 Communicate with another host using the Telnet protocol (less secure).
 
@@ -466,7 +466,7 @@ telnet example.com 80
 ```
 
 
-###  `netstat` 
+####  `netstat` 
 
 The `netstat` command is a network utility tool used to display network connections, routing tables, interface statistics. It provides information about network connections and routing tables, which can be useful for troubleshooting network-related issues.
 
@@ -490,7 +490,7 @@ Display listening TCP sockets:
 netstat -l -t
 ```
 
-### `wget`
+#### `wget`
 
 Retrieve content from web servers via HTTP, HTTPS, FTP.
 
@@ -499,7 +499,7 @@ Retrieve content from web servers via HTTP, HTTPS, FTP.
 wget https://example.com/file.tar.gz
 ```
 
-### `ip`
+#### `ip`
 
 The `ip` command is used for showing/manipulating routing, network devices, interfaces, and tunnels in Unix-like operating systems.
 
@@ -525,7 +525,7 @@ Output:
 ```
 
 
-### `dig`
+#### `dig`
 
 The `dig` command is used for querying DNS servers for various DNS records.
 
@@ -558,7 +558,7 @@ example.com.        604800  IN  A   93.184.216.34
 ;; MSG SIZE  rcvd: 55
 ```
 
-### `host`
+#### `host`
 
 The `host` command is used to perform DNS lookups. It retrieves domain name to IP address mappings by querying DNS servers.
 
