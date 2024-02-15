@@ -330,6 +330,10 @@ You can verify that the task has been added correctly using the `crontab -l` com
 
 #### SystemD
 
+::: tip for MacOS
+Use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
+:::
+
 Systemd is a service and process management system for Linux systems. It offers advanced features such as parallel startup, dependency management, service monitoring, and more.
 
 Configuring a service with systemd involves creating a `.service` file that specifies the service's settings. Here's an example of a basic service file:
@@ -617,8 +621,9 @@ git clone repository_url
 
 ## Exercises
 
-Requirement For Windows :
+::: tip Requirement For Windows 
 Linux subsystem for windows : https://learn.microsoft.com/fr-fr/windows/wsl/install
+:::
 
 ### Exercise 0 - Watch those 5min videos
 
@@ -634,8 +639,6 @@ Linux subsystem for windows : https://learn.microsoft.com/fr-fr/windows/wsl/inst
 
 **(HTTP/1 to HTTP/2 to HTTP/3)**
 <iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
 
 
 ### 🧪 Exercise 1 - File System Management 
@@ -669,7 +672,7 @@ Add a cron that recreate the root folder "personnages" at your user home each 5 
 Add the script as a linux service with the same rule, each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
 ::: tip For MacOS
-For macOS use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
+Use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
 :::
 
 ### 🧪 Exercice 4  - Git
