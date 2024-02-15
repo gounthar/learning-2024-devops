@@ -183,7 +183,6 @@ usaer@host:~$ which java
 
 Package manager for Debian-based systems.
 
-**Example:**
 ```bash
 apt update
 ```
@@ -191,7 +190,7 @@ apt update
 - `update`: Updates the package index.
 
 **Config Files:** 
-- `sources.list`: Contains a list of repository URLs used by `apt`.
+- `/etc/apt/sources.list`: Contains a list of repository URLs used by `apt`.
 - `/etc/apt/sources.list.d/`: Additional sources for `apt`.
 
 **Removing Packages:** 
@@ -202,7 +201,6 @@ apt update
 
 Package manager for RPM-based systems like CentOS.
 
-**Example:**
 ```bash
 yum install package_name
 ```
@@ -218,7 +216,6 @@ yum install package_name
 
 Package manager, newer version of `yum`, used in Fedora.
 
-**Example:**
 ```bash
 dnf search keyword
 ```
@@ -234,7 +231,6 @@ dnf search keyword
 
 Package manager for Arch Linux.
 
-**Example:**
 ```bash
 pacman -Syu
 ```
