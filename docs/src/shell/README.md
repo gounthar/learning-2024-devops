@@ -256,7 +256,7 @@ chmod +x myscript.sh
 ```
 - You can now execute the script
 ```bash
-./myscript/sh
+./myscript.sh
 HelloWorld !
 ```
 
