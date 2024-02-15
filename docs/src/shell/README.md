@@ -690,6 +690,11 @@ Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Ser
 Use `ping`, `telnet`, `ip`, `netstat` during your services deployment
 
 
+### 🧪  Exercise 6 - SSH
+
+By pair create an [ssh server](https://www.openssh.com/) on a laptop and try to connect from the other laptop.
+
+
 
 
 
