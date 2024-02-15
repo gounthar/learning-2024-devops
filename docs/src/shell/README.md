@@ -306,7 +306,7 @@ top
 - `Shift + M`: Sort by memory usage in `top`.
 - `F6` (in `htop`): Sort by various fields.
 
-#### Cron tab
+#### Chrono table (Cron or CronTab)
 
 Cron is a task scheduling utility for Unix and Unix-like systems. It allows users to schedule commands or scripts to run periodically at specified intervals.
 
@@ -664,7 +664,7 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
 15. In the file "14.txt", you will find lines with the word "total". Using the grep command, copy the contents of the file "14.txt" into the file "15.txt" by removing occurrences of the word "total".
 16. Save the last 250 lines of your history in the file "myhistory" by removing any lines where you used the "cd" command. You will use the grep command again.
 
-### 🧪  Exercise 2  - Cron ( Unix machines only)
+### 🧪  Exercise 2  - Cron (Unix machines only)
 Add a cron that recreate the root folder "personnages" at your user home each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
 
