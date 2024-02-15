@@ -61,11 +61,11 @@ tree
 ```
 
 
-## File permissions 
+## Permissions 
 
 In Linux distributions, file permissions and ownership are managed through a robust system known as "rights management." This system controls access to files and directories, ensuring security and privacy across the system. Each file and directory has associated permissions determining who can read, write, or execute them. These permissions are categorized for three types of users: the file owner, the user group associated with the file, and others.
 
-### Read file permisions
+#### Read file permisions
 
 When you use `ls -l` in a terminal, you'll see an output similar to this:
 
@@ -86,8 +86,6 @@ Let's break down what each part of this output signifies:
 
 - **File Size, Date, and Name:** The `4096 Jan 1 12:00 example.txt` part shows the file size, modification date, and file name.
 
-#### Interpreting Permissions
-
 - `r` denotes read permission.
 - `w` denotes write permission.
 - `x` denotes execute permission.
@@ -100,7 +98,7 @@ For instance, in `-rwxr-xr--`:
 
 This visual representation from `ls -l` allows you to quickly interpret file permissions and understand who has access to read, write, and execute the file.
 
-### Changing Permissions
+#### Changing Permissions
 
 Permissions are modified using commands like `chmod`. For example, granting read and write permissions to the owner and group of a file named `example.txt`:
 
@@ -108,7 +106,7 @@ Permissions are modified using commands like `chmod`. For example, granting read
 chmod ug+rw example.txt
 ```
 
-### Ownership Management
+#### Ownership Management
 
 Ownership is altered using `chown`. To change the owner of `example.txt` to `newowner`:
 
@@ -128,7 +126,7 @@ chown newowner example.txt
 
 This script demonstrates using `chmod` and `chown` to modify file permissions and ownership, ensuring proper management and security within a Linux environment.
 
-### Octal notation
+#### Octal notation
 
 Octal notation simplifies permission settings using three digits, each representing permission types for owner, group, and others.
 
@@ -139,7 +137,7 @@ For instance:
 
 This notation streamlines permission management, facilitating precise access control in Linux.
 
-## Basic Commands
+## Filesystem
 
 #### `cd`
 
