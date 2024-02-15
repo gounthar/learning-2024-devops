@@ -137,7 +137,7 @@ For instance:
 
 This notation streamlines permission management, facilitating precise access control in Linux.
 
-## Filesystem
+## Navigation
 
 #### `cd`
 
@@ -271,9 +271,6 @@ echo "There are $nlines lines in $1"
 ./count_lines.sh    /etc/group
 There are 73 lines in /etc/group
 ```
-
-
-
 
 ## Processes & Services
 
