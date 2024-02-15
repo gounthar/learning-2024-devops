@@ -241,6 +241,185 @@ pacman -Syu
 **Removing Packages:** 
 - `pacman -R package_name`: Removes a package.
 
+##  Shell Scripting
+
+- Create a `.sh`file
+- add the following header inside it 
+```bash
+#!/bin/bash
+# Put your command to execute HERE
+echo "HelloWorld !"
+```
+- Add the right of execution to the file 
+```shell
+chmod +x myscript.sh
+```
+- You can now execute the script
+```bash
+./myscript/sh
+HelloWorld !
+```
+
+## Processes & Services
+
+#### `ps`
+
+Display information about running processes.
+
+**Example:**
+```bash
+ps aux
+```
+
+- `aux`: Display all processes with a user-oriented format.
+
+
+When you run the `ps` command in Unix-like operating systems, it displays information about active processes. Among the various columns of information, you might see a column labeled `PD`. This column represents the "Parent Process ID" or "PPID".
+
+The Parent Process ID refers to the Process ID (PID) of the parent process that spawned the current process. In other words, it indicates which process is the parent of the process listed in the current row.
+
+For example, if you see a `pd` value of `1234`, it means that the process listed in that row was created by the process with PID `1234`.
+
+Understanding the parent-child relationship between processes can be crucial for troubleshooting and analyzing system behavior. It helps in determining how processes are related and how they interact with each other.
+
+Here's an example of the output of the `ps` command with the `pd` column:
+
+```
+  PID   PPID  CMD
+  1001  999   bash
+  1002  1001  └─── ls
+  1003  1001  └─── ps
+```
+
+Process with PID `1001` (bash) is the parent process of processes with PIDs `1002` (ls) and `1003` (ps).
+Processes `ls` and `ps` were spawned by the `bash` process.
+
+
+#### `top` or `htop`
+Monitoring tools to view system processes and resource usage.
+
+**Example:**
+```bash
+top
+```
+
+- `Shift + M`: Sort by memory usage in `top`.
+- `F6` (in `htop`): Sort by various fields.
+
+#### Cron tab
+
+Cron is a task scheduling utility for Unix and Unix-like systems. It allows users to schedule commands or scripts to run periodically at specified intervals.
+
+To edit the cron configuration file:
+```sh
+crontab -e
+```
+
+```plaintext
+* * * * * command_to_execute
+```
+
+The general syntax for configuring a task in a cron tab is as follows, where the five asterisks (*) represent respectively:
+    - Minute (0-59)
+    - Hour (0-23)
+    - Day of the month (1-31)
+    - Month (1-12)
+    - Day of the week (0-7, 0 and 7 represent Sunday)
+
+You can verify that the task has been added correctly using the `crontab -l` command.
+
+#### SystemD
+
+Systemd is a service and process management system for Linux systems. It offers advanced features such as parallel startup, dependency management, service monitoring, and more.
+
+Configuring a service with systemd involves creating a `.service` file that specifies the service's settings. Here's an example of a basic service file:
+
+```plaintext
+[Unit]
+Description=Service Description
+
+[Service]
+Type=Service Type
+ExecStart=/path/to/command_to_execute
+Restart=Restart Policy
+
+[Install]
+WantedBy=default.target
+```
+
+- `[Unit]`: Section containing metadata about the service.
+- `[Service]`: Section describing the service itself.
+- `[Install]`: Section specifying how the service should be installed.
+
+To refresh the list of systemd services:
+
+```shell
+sudo systemctl daemon-reload
+```
+
+To Start your service:
+
+```shell
+sudo systemctl start mon_service
+```
+
+To Check the status of your service:
+
+```shell
+sudo systemctl status mon_service
+```
+
+Console Output:
+```shell
+● mon_service.service - My demonstration service
+   Loaded: loaded (/etc/systemd/system/mon_service.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sat 2024-02-14 10:00:00 CET; 5s ago
+ Main PID: 12345 (mon_script.sh)
+    Tasks: 1 (limit: 4915)
+   Memory: 10.0M
+   CGroup: /system.slice/mon_service.service
+           └─12345 /path/to/mon_script.sh
+
+Feb 14 10:00:00 hostname systemd[1]: Started My demonstration service.
+```
+
+You can also configure a Timer associated with your service:
+
+1. Create a timer file named `mon_service.timer` in the directory `/etc/systemd/system/`:
+
+```shell
+sudo nano /etc/systemd/system/mon_service.timer
+```
+
+2. Add the following content to the file:
+
+```plaintext
+[Unit]
+Description=My timer for mon_service
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Unit=mon_service.service
+
+[Install]
+WantedBy=timers.target
+```
+
+In this example, `OnCalendar=*-*-* 00:00:00` means the timer will trigger every day at midnight.
+
+To start your timer: 
+```shell
+sudo systemctl daemon-reload
+sudo systemctl enable mon_service.timer
+sudo systemctl start mon_service.timer
+```
+
+To check the status of your timer:
+
+```shell
+sudo systemctl status mon_service.timer
+```
+
 ## Network Debugging
 
 ### `ping`
@@ -380,168 +559,6 @@ example.com has address 93.184.216.34
 example.com has IPv6 address 2606:2800:220:1:248:1893:25c8:1946
 ```
 
-## Processes & Services
-
-#### `ps`
-
-Display information about running processes.
-
-**Example:**
-```bash
-ps aux
-```
-
-- `aux`: Display all processes with a user-oriented format.
-
-
-When you run the `ps` command in Unix-like operating systems, it displays information about active processes. Among the various columns of information, you might see a column labeled `PD`. This column represents the "Parent Process ID" or "PPID".
-
-The Parent Process ID refers to the Process ID (PID) of the parent process that spawned the current process. In other words, it indicates which process is the parent of the process listed in the current row.
-
-For example, if you see a `pd` value of `1234`, it means that the process listed in that row was created by the process with PID `1234`.
-
-Understanding the parent-child relationship between processes can be crucial for troubleshooting and analyzing system behavior. It helps in determining how processes are related and how they interact with each other.
-
-Here's an example of the output of the `ps` command with the `pd` column:
-
-```
-  PID   PPID  CMD
-  1001  999   bash
-  1002  1001  └─── ls
-  1003  1001  └─── ps
-```
-
-Process with PID `1001` (bash) is the parent process of processes with PIDs `1002` (ls) and `1003` (ps).
-Processes `ls` and `ps` were spawned by the `bash` process.
-
-
-#### `top` or `htop`
-
-Monitoring tools to view system processes and resource usage.
-
-**Example:**
-```bash
-top
-```
-
-- `Shift + M`: Sort by memory usage in `top`.
-- `F6` (in `htop`): Sort by various fields.
-
-#### Cron tab
-
-
-Cron is a task scheduling utility for Unix and Unix-like systems. It allows users to schedule commands or scripts to run periodically at specified intervals.
-
-To edit the cron configuration file:
-```sh
-crontab -e
-```
-
-```plaintext
-* * * * * command_to_execute
-```
-
-The general syntax for configuring a task in a cron tab is as follows, where the five asterisks (*) represent respectively:
-    - Minute (0-59)
-    - Hour (0-23)
-    - Day of the month (1-31)
-    - Month (1-12)
-    - Day of the week (0-7, 0 and 7 represent Sunday)
-
-You can verify that the task has been added correctly using the `crontab -l` command.
-
-#### SystemD
-
-Systemd is a service and process management system for Linux systems. It offers advanced features such as parallel startup, dependency management, service monitoring, and more.
-
-Configuring a service with systemd involves creating a `.service` file that specifies the service's settings. Here's an example of a basic service file:
-
-```plaintext
-[Unit]
-Description=Service Description
-
-[Service]
-Type=Service Type
-ExecStart=/path/to/command_to_execute
-Restart=Restart Policy
-
-[Install]
-WantedBy=default.target
-```
-
-- `[Unit]`: Section containing metadata about the service.
-- `[Service]`: Section describing the service itself.
-- `[Install]`: Section specifying how the service should be installed.
-
-To refresh the list of systemd services:
-
-```shell
-sudo systemctl daemon-reload
-```
-
-To Start your service:
-
-```shell
-sudo systemctl start mon_service
-```
-
-To Check the status of your service:
-
-```shell
-sudo systemctl status mon_service
-```
-
-Console Output:
-```shell
-● mon_service.service - My demonstration service
-   Loaded: loaded (/etc/systemd/system/mon_service.service; enabled; vendor preset: enabled)
-   Active: active (running) since Sat 2024-02-14 10:00:00 CET; 5s ago
- Main PID: 12345 (mon_script.sh)
-    Tasks: 1 (limit: 4915)
-   Memory: 10.0M
-   CGroup: /system.slice/mon_service.service
-           └─12345 /path/to/mon_script.sh
-
-Feb 14 10:00:00 hostname systemd[1]: Started My demonstration service.
-```
-
-You can also configure a Timer associated with your service:
-
-1. Create a timer file named `mon_service.timer` in the directory `/etc/systemd/system/`:
-
-```shell
-sudo nano /etc/systemd/system/mon_service.timer
-```
-
-2. Add the following content to the file:
-
-```plaintext
-[Unit]
-Description=My timer for mon_service
-
-[Timer]
-OnCalendar=*-*-* 00:00:00
-Unit=mon_service.service
-
-[Install]
-WantedBy=timers.target
-```
-
-In this example, `OnCalendar=*-*-* 00:00:00` means the timer will trigger every day at midnight.
-
-To start your timer: 
-```shell
-sudo systemctl daemon-reload
-sudo systemctl enable mon_service.timer
-sudo systemctl start mon_service.timer
-```
-
-To check the status of your timer:
-
-```shell
-sudo systemctl status mon_service.timer
-```
-
 ## Others
 
 #### `grep`
@@ -597,7 +614,6 @@ git clone repository_url
 - `commit`: create a new commit from the current index
 - `push`: push local commit to the remote branch
 - `pull`: retrieve commits from the remote branch
-
 
 ## Exercises
 
