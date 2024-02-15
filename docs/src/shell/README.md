@@ -622,7 +622,7 @@ git clone repository_url
 ## Exercises
 
 ::: tip Requirement For Windows 
-Linux subsystem for windows : https://learn.microsoft.com/fr-fr/windows/wsl/install
+Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl/install)
 :::
 
 ### Exercise 0 - Watch those 5min videos
