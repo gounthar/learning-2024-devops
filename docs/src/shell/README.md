@@ -143,7 +143,6 @@ This notation streamlines permission management, facilitating precise access con
 
 Change directory.
 
-**Example:**
 ```bash
 cd /path/to/directory
 ```
@@ -152,9 +151,9 @@ cd /path/to/directory
 
 List directory contents.
 
-**Example:**
 ```bash
-ls -l
+user@host:/$ ls /path/to/directory
+bin  boot  dev  etc  home  initrd.img  initrd.img.old  lib  lib32  lib64  libx32  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  vmlinuz  vmlinuz.old
 ```
 
 - `-l`: Long format, displaying detailed information.
@@ -163,9 +162,19 @@ ls -l
 
 Print working directory.
 
-**Example:**
 ```bash
-pwd
+$cd /etc
+$ pwd
+/etc
+```
+
+#### `which`
+
+Locates an executable file in your shell’s search path.
+
+```bash
+usaer@host:~$ which java
+/usr/bin/java
 ```
 
 ## Package Managers
