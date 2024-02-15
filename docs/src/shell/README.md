@@ -680,7 +680,7 @@ For macOS use LaunchAgent or LaunchDaemon service implementation [here](https://
 
 ### 🧪  Exercice 5 - onPremise Web server
 
-Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Serve a simple php content  connected to the MariaDB with PDO https://www.php.net/manual/fr/book.pdo.php
+Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Serve a simple php content  connected to the MariaDB with [PDO](https://www.php.net/manual/fr/book.pdo.php)
 
 ![onpremise](../assets/images/onpremise.png)
 
