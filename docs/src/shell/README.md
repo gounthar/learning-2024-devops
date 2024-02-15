@@ -258,6 +258,23 @@ chmod +x myscript.sh
 HelloWorld !
 ```
 
+#### Passing argument to a bash shell script
+
+*count_line.sh*
+``` bash
+#!/bin/bash
+nlines=$(wc -l < $1)
+echo "There are $nlines lines in $1"
+```
+
+```shell
+./count_lines.sh    /etc/group
+There are 73 lines in /etc/group
+```
+
+
+
+
 ## Processes & Services
 
 #### `ps`
