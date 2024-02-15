@@ -604,6 +604,22 @@ git clone repository_url
 Requirement For Windows :
 Linux subsystem for windows : https://learn.microsoft.com/fr-fr/windows/wsl/install
 
+### Exercise 0 - Watch those 5min videos
+
+**What happens when you type a URL into your browser?**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AlkDbnbv7dk" title="What happens when you type a URL into your browser?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**What Is REST API? Examples And How To Use It**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-mN3VyJuCjM" title="What Is REST API? Examples And How To Use It" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**SSL, TLS, HTTPS Explained**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j9QmMEWmcfo" title="SSL, TLS, HTTPS Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+**(HTTP/1 to HTTP/2 to HTTP/3)**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 
 
 ### 🧪 Exercise 1 - File System Management 
@@ -633,8 +649,12 @@ Linux subsystem for windows : https://learn.microsoft.com/fr-fr/windows/wsl/inst
 Add a cron that recreate the root folder "personnages" at your user home each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
 
-### 🧪 Exercise 3 - SystemD ( Unix machines only)
+### 🧪 Exercise 3 - SystemD ( Linux machines only)
 Add the script as a linux service with the same rule, each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
+
+::: tip For MacOS
+For macOS use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
+:::
 
 ### 🧪 Exercice 4  - Git
 1. Create an account on gitlab.com
