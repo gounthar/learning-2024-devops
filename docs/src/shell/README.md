@@ -163,7 +163,7 @@ bin  boot  dev  etc  home  initrd.img  initrd.img.old  lib  lib32  lib64  libx32
 Print working directory.
 
 ```bash
-$cd /etc
+$ cd /etc
 $ pwd
 /etc
 ```
