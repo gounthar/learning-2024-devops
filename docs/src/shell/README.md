@@ -673,7 +673,7 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
             └── [-rw-r--r-- ]  spiderman
 ```
 
-:::detail solution
+:::details solution
 ```bash
 #!/bin/bash
 
@@ -740,7 +740,7 @@ ls -lR --color=auto "$root_dir/personnages"
 15. In the file "14.txt", you will find lines with the word "total". Using the grep command, copy the contents of the file "14.txt" into the file "15.txt" by removing occurrences of the word "total".
 16. Save the last 250 lines of your history in the file "myhistory" by removing any lines where you used the "cd" command. You will use the grep command again.
 
-:::detail solution
+:::details solution
 ```bash
 #!/bin/bash
 
@@ -798,7 +798,7 @@ grep -v "cd" ~/.bash_history | tail -n 250 > myhistory
 ### 🧪  Exercise 2  - Cron (Unix machines only)
 Add a cron that recreate the root folder "personnages" at your user home each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
-::: detail solution
+:::details solution
 ``` shell
 crontab -e
 ```
