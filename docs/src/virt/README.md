@@ -416,6 +416,30 @@ Generate the same AlpineLinux VM with Vagrant
 * Go to https://app.vagrantup.com/boxes/search and fin the AlpineLinux box
 * And use vagrant command to start it
 
+:::details solution
+``` ruby 
+Vagrant.configure("2") do |config|
+  config.vm.define "alpine_vm" do |vm|
+    vm.vm.box = "generic/alpine312"
+    vm.vm.network "private_network", type: "dhcp"
+    vm.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = 1
+    end
+
+    # Provisioning
+    vm.vm.provision "shell", inline: <<-SHELL
+      # Install VirtualBox Guest Additions
+      apk add --no-cache virtualbox-guest-additions virtualbox-guest-modules-virt
+
+      # Install SSH
+      apk add --no-cache my_software_to_install
+    SHELL
+  end
+end
+```
+:::
+
 ### Exercice 4 - discover hypervisor type 1 
 
 Install and test an hypervisor type II with VMWare ESXi 
