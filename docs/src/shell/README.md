@@ -662,7 +662,84 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
 
 **Objective:** Create a script that organizes files in a directory, lists permissions, and performs basic operations as follow
 
-![tree](../assets/images/tree.png)
+[comment]: <> (![tree](../assets/images/tree.png))
+
+```bash
+[drwxr-xr-x ]  personnages
+├── [drwxrwxr-x ]  mascottes
+│   ├── [-rw-r--r-- ]  beastie
+│   ├── [-rw-r--r-- ]  bibendum
+│   ├── [-rw-r--r-- ]  mario
+│   └── [-rw-r--r-- ]  sonic
+└── [drwxr-xr-x ]  super heros
+    ├── [drwxr-xr-x ]  femmes
+    │   ├── [drwxrwxr-x ]  cape
+    │   │   ├── [drwxrwxr-x ]  batgirl
+    │   │   └── [drwxrwxr-x ]  wonderwoman
+    │   └── [drwxrwxr-x ]  sans cape
+    │       ├── [drwxrwxr-x ]  electra
+    │       └── [drwxrwxr-x ]  superwoman
+    └── [drwxr-xr-x ]  hommes
+        ├── [drwxrwxr-x ]  cape
+        │   ├── [-rw-r--r-- ]  batman
+        │   ├── [-rw-r--r-- ]  superman
+        │   └── [-rw-r--r-- ]  thor
+        └── [drwxrwxr-x ]  sans cap
+            ├── [-rw-r--r-- ]  antman
+            ├── [-rw-r--r-- ]  daredevil
+            ├── [-rw-r--r-- ]  linuxman
+            └── [-rw-r--r-- ]  spiderman
+```
+
+:::detail solution
+```bash
+#!/bin/bash
+
+# Check if a root directory is specified as an argument
+root_dir="${1:-.}"
+
+# Create the directory and file structure
+directories=(
+    "$root_dir/personnages/mascottes"  
+    "$root_dir/personnages/super heros/femmes/cape" 
+    "$root_dir/personnages/super heros/femmes/sans cape"  
+    "$root_dir/personnages/super heros/hommes/cape" 
+    "$root_dir/personnages/super heros/hommes/sans cap"  
+    "$root_dir/personnages/super heros/femmes/cape/batgirl"  
+    "$root_dir/personnages/super heros/femmes/cape/wonderwoman"  
+    "$root_dir/personnages/super heros/femmes/sans cape/electra" 
+    "$root_dir/personnages/super heros/femmes/sans cape/superwoman" 
+)
+
+files=(
+    "$root_dir/personnages/mascottes/beastie" 
+    "$root_dir/personnages/mascottes/bibendum"  
+    "$root_dir/personnages/mascottes/mario"  
+    "$root_dir/personnages/mascottes/sonic"
+    "$root_dir/personnages/super heros/hommes/cape/batman" 
+    "$root_dir/personnages/super heros/hommes/cape/superman"  
+    "$root_dir/personnages/super heros/hommes/cape/thor"  
+    "$root_dir/personnages/super heros/hommes/sans cap/antman"  
+    "$root_dir/personnages/super heros/hommes/sans cap/daredevil"  
+    "$root_dir/personnages/super heros/hommes/sans cap/linuxman"  
+    "$root_dir/personnages/super heros/hommes/sans cap/spiderman"  
+)
+
+# Create directories
+for dir in "${directories[@]}"; do
+    mkdir -m 775 -p "$dir"
+done
+
+# Create files
+for file in "${files[@]}"; do
+    touch -m 664 "$file"
+done
+
+# Display permissions using ls
+ls -lR --color=auto "$root_dir/personnages"
+
+```
+:::
 
 1. It seems that "linuxman" is not a superhero. In fact, he is called "Tux" and should be located in the "mascots" directory. Using the "mv" command, move the file "linuxman" to "tux" in the mascots directory.
 2. Rename the directory "superheroes" to "comics".
@@ -681,9 +758,73 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
 15. In the file "14.txt", you will find lines with the word "total". Using the grep command, copy the contents of the file "14.txt" into the file "15.txt" by removing occurrences of the word "total".
 16. Save the last 250 lines of your history in the file "myhistory" by removing any lines where you used the "cd" command. You will use the grep command again.
 
+:::detail solution
+```bash
+#!/bin/bash
+
+# 1. Move linuxman to tux in mascots directory
+mv personnages/super\ heros/hommes/sans\ cap/linuxman personnages/mascottes/tux
+
+# 2. Rename the directory superheroes to comics
+mv personnages/super\ heros personnages/comics
+
+# 3. Write into the file batman
+echo "Bruce Wayne hides behind this character" > personnages/comics/hommes/cape/batman
+
+# 4. Append to the file batman
+echo "he lives in Gotham" >> personnages/comics/hommes/cape/batman
+
+# 5. Write into the file dardevil
+echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans\ cap/daredevil
+
+# 6. Overwrite the content of the file dardevil
+echo "Dardevil is a blind comic character" > personnages/comics/hommes/sans\ cap/daredevil
+
+# 7. Copy the contents of batman and dardevil into mascots/mixdarbat
+cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans\ cap/daredevil > personnages/mascottes/mixdarbat
+
+# 8. Switch to root mode
+sudo su
+
+# 9. Create a user named "fanboy"
+useradd fanboy
+
+# 10. Copy the directory characters into /home/fanboy
+cp -r personnages /home/fanboy
+
+# 11. Change owner and group of the directory
+chown -R fanboy:fanboy /home/fanboy/personnages
+
+# 12. Create a symbolic link "persofanboy" pointing to /home/fanboy/characters
+ln -s /home/fanboy/personnages /home/fanboy/persofanboy
+
+# 13. Create a symbolic link "perso_yourname" pointing to /home/yourname/characters
+# Replace "yourname" with your actual username
+ln -s /home/yourname/personnages /home/yourname/perso_yourname
+
+# 14. Save the complete tree structure of /home/fanboy/characters into 14.txt
+ls -R /home/fanboy/personnages > 14.txt
+
+# 15. Remove occurrences of the word "total" from 14.txt and save into 15.txt
+grep -v "total" 14.txt > 15.txt
+
+# 16. Save the last 250 lines of history into myhistory, removing lines with "cd" command
+grep -v "cd" ~/.bash_history | tail -n 250 > myhistory
+```
+:::
+
 ### 🧪  Exercise 2  - Cron (Unix machines only)
 Add a cron that recreate the root folder "personnages" at your user home each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
+::: detail solution
+``` shell
+crontab -e
+```
+
+``` bash
+*/5 * * * * /bin/bash /path/to/your/script.sh /root/folder/$(date +\%Y-\%m-\%d)
+```
+:::
 
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
 Add the script as a linux service with the same rule, each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
