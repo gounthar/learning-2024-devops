@@ -94,10 +94,6 @@ As the name suggests, this mode allows only the establishment of a connection be
 
 ![bridge](../assets/images/hostonly.png)
 
-###  🧪  Exercise
-
-Install Ubuntu on VirtualBox hypervisor.
-
 ###  Scripting VMs
 
 `VBoxManage` is a command-line interface tool provided by VirtualBox, facilitating the management of VMs and their configurations. It allows for automation and scripting of various VirtualBox operations, enabling tasks like creating VMs, modifying settings, starting or stopping VMs, and more through scripting.
@@ -172,24 +168,6 @@ Install Ubuntu on VirtualBox hypervisor.
 
 You can read the full documentation [here](https://www.virtualbox.org/manual/ch08.html)
 
-### 🧪  Exercise
-
-Generate a linux virtual machine with VBoxManage
-
-* Create your bash script
-* Download alpine iso : http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso 
-* Create storage medium for VM
-* List available OS types and choose the right one
-* Register a new alpine VM 
-* Configure system settings of alpine VM
-* Configure boot settings of VM (Boot1 CDDrive , Boot2: Disk)
-* Add a storage controller (IDE) for the DVD iso
-* Add a storage controller (SATA) for the HDD
-* Add the storage created at the begining to the VM
-* Add Alpine ISO to the VM
-* Start alpine VM
-* Install Virtualbox Additions
-* Use setup-alpine to configure your VM
 
 ### Vagrant
 
@@ -306,14 +284,6 @@ Displays SSH configuration details and port mappings for the Vagrant environment
 
 You can find more command informations [here](http://docs.vagrantup.com/v2/cli/index.html)
 
-### 🧪  Exercise
-
-Generate the same AlpineLinux VM with Vagrant
-
-* Go to https://app.vagrantup.com/boxes/search and fin the AlpineLinux box
-* And use vagrant command to start it
-
-
 ## Hypervisor Type I
 
 Hypervisor Type I, also known as a bare-metal hypervisor, runs directly on the physical hardware without the need for a host operating system. It provides better performance and efficiency by eliminating the overhead of an additional operating system layer. Examples include VMware ESXi and Microsoft Hyper-V.
@@ -366,10 +336,88 @@ Conclusion:
 VMware ESXi serves as a robust virtualization platform, offering a wide array of functionalities essential for modern data center management. Its features encompass VM management, resource optimization, networking, storage, high availability, security, and performance monitoring, making it a fundamental tool for DevOps professionals managing infrastructure at scale.
 
 
-### 🧪  Exercise
+## 🧪  Exercises
+
+###  🧪  Exercise 1 - Use an hypervisor type 2 
+
+Install Ubuntu on VirtualBox hypervisor.
+
+### 🧪  Exercise 2 - Virtualization scripting
+
+Generate a linux virtual machine with VBoxManage
+
+* Create your bash script
+* Download alpine iso : http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso 
+* Create storage medium for VM
+* List available OS types and choose the right one
+* Register a new alpine VM 
+* Configure system settings of alpine VM
+* Configure boot settings of VM (Boot1 CDDrive , Boot2: Disk)
+* Add a storage controller (IDE) for the DVD iso
+* Add a storage controller (SATA) for the HDD
+* Add the storage created at the begining to the VM
+* Add Alpine ISO to the VM
+* Start alpine VM
+* Install Virtualbox Additions
+* Use setup-alpine to configure your VM
+
+:::details solution
+```bash
+#!/bin/bash
+
+# VM settings
+VM_NAME="AlpineLinux"
+VM_MEMORY="1024"
+VM_CPU="1"
+VM_DISK_SIZE="20000"
+
+# Alpine Linux ISO image
+ALPINE_ISO="/path/to/alpine-linux.iso"
+
+# Create VM
+VBoxManage createvm --name "$VM_NAME" --ostype "Linux26_64" --register
+
+# Configure VM settings
+VBoxManage modifyvm "$VM_NAME" --memory "$VM_MEMORY" --cpus "$VM_CPU" --audio none
+VBoxManage modifyvm "$VM_NAME" --nic1 nat
+
+# Create and attach virtual disk
+VBoxManage createhd --filename "$VM_NAME.vdi" --size "$VM_DISK_SIZE"
+VBoxManage storagectl "$VM_NAME" --name "SATA Controller" --add sata --controller IntelAhci
+VBoxManage storageattach "$VM_NAME" --storagectl "SATA Controller" --port 0 --device 0 --type hdd --medium "$VM_NAME.vdi"
+
+# Attach Alpine Linux ISO
+VBoxManage storagectl "$VM_NAME" --name "IDE Controller" --add ide --controller PIIX4
+VBoxManage storageattach "$VM_NAME" --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium "$ALPINE_ISO"
+
+# Start VM
+VBoxManage startvm "$VM_NAME" --type headless
+
+# Wait for VM to boot
+sleep 30
+
+# Install VirtualBox Guest Additions
+VBoxManage guestcontrol "$VM_NAME" --username root --password password123 --execute "/sbin/apk add virtualbox-guest-additions virtualbox-guest-modules-virt" --wait-stdout
+
+# Install SSH
+VBoxManage guestcontrol "$VM_NAME" --username root --password password123 --execute "/sbin/apk add openssh" --wait-stdout
+
+# Shutdown VM
+VBoxManage controlvm "$VM_NAME" poweroff
+
+```
+:::
+
+### Exercice 3 - Vagrant usage
+
+Generate the same AlpineLinux VM with Vagrant
+
+* Go to https://app.vagrantup.com/boxes/search and fin the AlpineLinux box
+* And use vagrant command to start it
+
+### Exercice 4 - discover hypervisor type 1 
 
 Install and test an hypervisor type II with VMWare ESXi 
-
 * [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
 
 
