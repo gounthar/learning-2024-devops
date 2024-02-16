@@ -815,6 +815,43 @@ Add the script as a linux service with the same rule, each 5 min with a suffix n
 Use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
 :::
 
+:::details
+
+*/etc/systemd/system/folder_creation.service*
+```bash
+[Unit]
+Description=Folder Creation Service
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /path/to/your/script.sh /root/folder/$(date +\%Y-\%m-\%d)
+
+[Install]
+WantedBy=multi-user.target
+```
+
+*/etc/systemd/system/folder_creation.timer*
+```bash
+[Unit]
+Description=Folder Creation Timer
+
+[Timer]
+OnUnitActiveSec=5m
+Unit=folder_creation.service
+
+[Install]
+WantedBy=timers.target
+```
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start folder_creation.timer
+sudo systemctl enable folder_creation.timer
+```
+
+:::
+
 ### 🧪 Exercice 4  - Git
 1. Create an account on gitlab.com
 2. Create a project
