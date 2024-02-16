@@ -646,8 +646,6 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
 
 **Objective:** Create a script that organizes files in a directory, lists permissions, and performs basic operations as follow
 
-[comment]: <> (![tree](../assets/images/tree.png))
-
 ```bash
 [drwxr-xr-x ]  personnages
 ├── [drwxrwxr-x ]  mascottes
