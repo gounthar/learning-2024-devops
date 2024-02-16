@@ -642,22 +642,6 @@ git clone repository_url
 Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl/install)
 :::
 
-### Exercise 0 - Watch those 5min videos
-
-**What happens when you type a URL into your browser?**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AlkDbnbv7dk" title="What happens when you type a URL into your browser?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-**What Is REST API? Examples And How To Use It**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-mN3VyJuCjM" title="What Is REST API? Examples And How To Use It" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-**(SSL, TLS, HTTPS Explained)**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/j9QmMEWmcfo" title="SSL, TLS, HTTPS Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-**(HTTP/1 to HTTP/2 to HTTP/3)**
-<iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
 ### 🧪 Exercise 1 - File System Management 
 
 **Objective:** Create a script that organizes files in a directory, lists permissions, and performs basic operations as follow
@@ -846,6 +830,22 @@ Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Ser
 ![onpremise](../assets/images/onpremise.png)
 
 Use `ping`, `telnet`, `ip`, `netstat` during your services deployment
+
+::: tip Some network recalls  
+
+**What happens when you type a URL into your browser?**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AlkDbnbv7dk" title="What happens when you type a URL into your browser?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**What Is REST API? Examples And How To Use It**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-mN3VyJuCjM" title="What Is REST API? Examples And How To Use It" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**(SSL, TLS, HTTPS Explained)**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j9QmMEWmcfo" title="SSL, TLS, HTTPS Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+**(HTTP/1 to HTTP/2 to HTTP/3)**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+:::
 
 
 ### 🧪  Exercise 6 - SSH
