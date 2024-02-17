@@ -882,18 +882,100 @@ Use `ping`, `telnet`, `ip`, `netstat` during your services deployment
 <iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 :::
 
+:::details solution
+```bash
+#!/bin/bash
+
+# Update package index
+sudo apt update
+
+# Install Apache
+sudo apt install -y apache2
+
+# Start Apache service
+sudo systemctl start apache2
+
+# Enable Apache service to start on boot
+sudo systemctl enable apache2
+
+# Install Telnet
+sudo apt install -y telnet
+
+# Install Ping (usually pre-installed)
+# If not installed, you can install with:
+# sudo apt install -y iputils-ping
+
+# Check Apache status
+sudo systemctl status apache2
+
+# Test Apache reachability
+echo "Testing Apache reachability..."
+if curl -s -I localhost:80 | grep "HTTP/1.1 200 OK" > /dev/null; then
+    echo "Apache is reachable."
+else
+    echo "Apache is not reachable."
+fi
+
+# Test Telnet reachability
+echo "Testing Telnet reachability..."
+if telnet localhost 80 | grep "Escape character is" > /dev/null; then
+    echo "Telnet is reachable."
+else
+    echo "Telnet is not reachable."
+fi
+
+# Test Ping reachability
+echo "Testing Ping reachability..."
+if ping -c 4 localhost | grep "4 packets transmitted, 4 received" > /dev/null; then
+    echo "Ping is reachable."
+else
+    echo "Ping is not reachable."
+fi
+```
 
 ### 🧪  Exercise 6 - SSH
 
 By pair create an [ssh server](https://www.openssh.com/) on a laptop and try to connect from the other laptop.
 
+:::details solution
+```bash
+#!/bin/bash
 
+# Update package index
+sudo apt update
 
+# Install OpenSSH server
+sudo apt install -y openssh-server
 
+# Start OpenSSH service
+sudo systemctl start ssh
 
+# Enable OpenSSH service to start on boot
+sudo systemctl enable ssh
 
+# Install Ping (if not already installed)
+sudo apt install -y iputils-ping
 
+# Replace 'remote_ip_address' with the IP address of the remote computer
+remote_ip_address="REMOTE_IP_ADDRESS"
 
+# Test Ping reachability to the remote computer
+echo "Testing Ping reachability to $remote_ip_address ..."
+if ping -c 4 $remote_ip_address | grep "4 packets transmitted, 4 received" > /dev/null; then
+    echo "Ping to $remote_ip_address is successful."
+else
+    echo "Ping to $remote_ip_address failed."
+    exit 1
+fi
+
+# Attempt SSH connection to the remote computer
+echo "Attempting SSH connection to $remote_ip_address ..."
+if ssh $remote_ip_address -o ConnectTimeout=10 true; then
+    echo "SSH connection to $remote_ip_address successful."
+else
+    echo "SSH connection to $remote_ip_address failed."
+fi
+:::
 
 
 
