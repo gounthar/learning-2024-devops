@@ -291,6 +291,8 @@ Hypervisor Type I, also known as a bare-metal hypervisor, runs directly on the p
 ### What is VMware ESXi?
 VMware ESXi is a powerful, bare-metal hypervisor, designed to create and manage virtual machines (VMs) on physical servers. It offers a range of functionalities essential for virtualization and efficient resource management in a data center environment.
 
+![vsphere](../assets/images/vsphere.png)
+
 Key Functionalities:
 
 **1. Virtual Machine Management**
