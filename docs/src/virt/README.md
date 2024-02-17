@@ -363,11 +363,13 @@ Generate a linux virtual machine with VBoxManage
 * Start alpine VM
 * Install Virtualbox Additions
 * Use setup-alpine to configure your VM
+* install ssh
+* install an Apache server
+* Test to reach your website from your Host machine
 
 :::details solution
 ```bash
 #!/bin/bash
-
 
 # VM settings
 VM_NAME="AlpineLinux"
@@ -416,7 +418,7 @@ VBoxManage controlvm "$VM_NAME" poweroff
 
 ### 🧪 Exercice 3 - Vagrant usage
 
-Generate the same AlpineLinux VM with Vagrant
+Generate the same AlpineLinux VM HTTPD server with Vagrant
 
 * Go to https://app.vagrantup.com/boxes/search and fin the AlpineLinux box
 * And use vagrant command to start it
@@ -449,7 +451,7 @@ end
 
 * Install and test an hypervisor type II with VMWare ESXi [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
 
-* Create a powershell script to create a VM on the ESXi node
+* Create a powershell script to create a simple VM on the ESXi node
 :::details solution
 ```powershell
 Install-Module -Name VMware.PowerCLI -Scope CurrentUser
