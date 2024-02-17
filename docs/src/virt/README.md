@@ -336,19 +336,19 @@ Conclusion:
 VMware ESXi serves as a robust virtualization platform, offering a wide array of functionalities essential for modern data center management. Its features encompass VM management, resource optimization, networking, storage, high availability, security, and performance monitoring, making it a fundamental tool for DevOps professionals managing infrastructure at scale.
 
 
-## 🧪  Exercises
+## Exercises
 
 ###  🧪  Exercise 1 - Use an hypervisor type 2 
 
 Install Ubuntu on VirtualBox hypervisor.
-* https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview
+* [https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview]([https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
 
 ### 🧪  Exercise 2 - Virtualization scripting
 
 Generate a linux virtual machine with VBoxManage
 
 * Create your bash script
-* Download alpine iso : http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso 
+* Download alpine iso : [http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso](http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso)
 * Create storage medium for VM
 * List available OS types and choose the right one
 * Register a new alpine VM 
@@ -412,7 +412,7 @@ VBoxManage controlvm "$VM_NAME" poweroff
 ```
 :::
 
-### Exercice 3 - Vagrant usage
+### 🧪 Exercice 3 - Vagrant usage
 
 Generate the same AlpineLinux VM with Vagrant
 
@@ -443,7 +443,7 @@ end
 ```
 :::
 
-### Exercice 4 - discover hypervisor type 1 
+### 🧪 Exercice 4 - Discover hypervisor type 1 
 
 * Install and test an hypervisor type II with VMWare ESXi [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
 
