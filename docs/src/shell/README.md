@@ -815,7 +815,7 @@ Add the script as a linux service with the same rule, each 5 min with a suffix n
 Use LaunchAgent or LaunchDaemon service implementation [here](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLaunchdJobs.html)
 :::
 
-:::details
+:::details solution
 
 */etc/systemd/system/folder_creation.service*
 ```bash

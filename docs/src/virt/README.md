@@ -366,6 +366,7 @@ Generate a linux virtual machine with VBoxManage
 ```bash
 #!/bin/bash
 
+
 # VM settings
 VM_NAME="AlpineLinux"
 VM_MEMORY="1024"
@@ -374,6 +375,8 @@ VM_DISK_SIZE="20000"
 
 # Alpine Linux ISO image
 ALPINE_ISO="/path/to/alpine-linux.iso"
+
+curl -o $ALPINE_ISO https://dl-cdn.alpinelinux.org/alpine/v3.15/releases/x86_64/alpine-standard-3.15.0-x86_64.iso
 
 # Create VM
 VBoxManage createvm --name "$VM_NAME" --ostype "Linux26_64" --register
@@ -442,8 +445,43 @@ end
 
 ### Exercice 4 - discover hypervisor type 1 
 
-Install and test an hypervisor type II with VMWare ESXi 
-* [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
+* Install and test an hypervisor type II with VMWare ESXi [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
 
+* Create a powershell script to create a VM on the ESXi node
+:::details solution
+```powershell
+Install-Module -Name VMware.PowerCLI -Scope CurrentUser
+Import-Module VMware.PowerCLI
+```
+```powershell
+# Connect to your vCenter or ESXi host
+$vcServer = "your_vc_server_or_esxi_host"
+$vcUser = "your_username"
+$vcPassword = "your_password"
 
+Connect-VIServer -Server $vcServer -User $vcUser -Password $vcPassword
+
+# Define VM parameters
+$vmName = "AlpineLinuxVM"
+$datacenterName = "your_datacenter"
+$clusterName = "your_cluster"
+$datastoreName = "your_datastore"
+$networkName = "your_network"
+$vmMemoryMB = 1024
+$vmNumCPUs = 1
+
+# Create VM
+New-VM -Name $vmName -MemoryMB $vmMemoryMB -NumCPU $vmNumCPUs -Datastore $datastoreName -NetworkName $networkName -Location (Get-Cluster $clusterName | Get-Datacenter $datacenterName).Name
+
+# Start VM
+Start-VM -VM $vmName
+
+# Install VMware Tools (optional)
+# Get-VM -Name $vmName | Install-VMTools -RunAsync
+
+# Disconnect from vCenter or ESXi host
+Disconnect-VIServer -Server $vcServer -Confirm:$false
+```
+
+:::
 
