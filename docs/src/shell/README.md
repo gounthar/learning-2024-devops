@@ -853,6 +853,12 @@ sudo systemctl enable folder_creation.timer
 :::
 
 ### 🧪 Exercice 4  - Git
+
+:::tip learn more about git
+[Learn Git Branching ](https://learngitbranching.js.org/?locale=fr_FR)
+[Github cheatsheet](https://training.github.com/downloads/fr/github-git-cheat-sheet.pdf)
+:::
+
 1. Create an account on gitlab.com
 2. Create a project
 3. push this code to the project
