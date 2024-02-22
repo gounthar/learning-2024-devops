@@ -28,7 +28,7 @@ export default defineUserConfig({
           "/game/",
           "/shell/",
           "/virt/", 
-          //"/container/", 
+          "/container/", 
           //"/ci/", 
           //"/prov/", 
           //"/ms/", 
