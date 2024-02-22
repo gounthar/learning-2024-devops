@@ -1,4 +1,5 @@
 # Let's start 
+[http://awl.li/learning-devops](http://awl.li/learning-devops)
 
 ## 🧪  Developers and IT Operators ?
 
@@ -7,72 +8,6 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 ![qrcode](../assets/images/qr_board.png)
 
 [https://awl.li/devops](https://awl.li/devops)
-
-
-## Plan (http://awl.li/learning-devops)
-
-::: details
-
-- Introduction
-    * What is devOps ?
-    * Definition
-    * A bit of history
-    * Architecture
-
-- Role-playing game
-
-- Shell for devOps
-    * Linux Filesystem ( tree, rights)
-    * Basic commands ( cd,ls, pwd)
-    * Package managers ( apt, yum, dnf, pacman)
-    * Basic network debug ( ping,ssh, telnet, wget)
-
-- Virtualization
-    * Definition
-    * HypervisorType II
-    * Networks
-    * Scripting (VBox Manage)
-    * Vagrant
-    * HypervisorType I
-
--  Containerization 
-    * Definition
-    * Basic usage
-    * Images
-    * Registries
-    * Multi-container with docker compose
-
--  Orchestration
-    * Definition
-    * Rancher UI
-
-- Continuous integration/delivery (CI/CD) 
-    - Definition
-    - Create a containerized CI/CD platform (Gitlab)
-    - CI/CD for devs
-        * Build
-        * Measure
-        * Test & Secure
-        * Deploy
-        * Monitor
-
-- Micro-services
-    * Definition
-    * Architecture
-    * API Gateways
-
--  Provisionning
-    * Ansible
-    * Terraform
-    * with Vagrant
-    * with Gitlab
-
-- Discover the Cloud (Gcloud)
-    * VMs ( compute engine)
-    * Kubernetes engine
-    * Container based ( Cloud run)
-    * Serverless
-::: 
 
 ## Prerequisites
 
