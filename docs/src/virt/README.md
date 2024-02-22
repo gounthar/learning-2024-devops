@@ -343,7 +343,7 @@ VMware ESXi serves as a robust virtualization platform, offering a wide array of
 ###  🧪  Exercise 1 - Use an hypervisor type 2 
 
 Install Ubuntu on VirtualBox hypervisor.
-* [https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview]([https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
+* [https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
 
 ### 🧪  Exercise 2 - Virtualization scripting
 
