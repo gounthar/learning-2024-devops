@@ -407,11 +407,11 @@ services:
 
 ## Exercises
 
-### 🧪 Exercise 1
+### 🧪 Exercise 1 - Basic commands 
 
 Pull HTTP apache server image from docker HUB and start your first web server containerized. Test it on your browser
 
-::: details view the answer
+::: detail solution
 ```bash
 # Pull the Apache HTTP Server image from Docker Hub
 docker pull httpd
@@ -421,21 +421,21 @@ docker run -d -p 8080:80 httpd
 ```
 :::
 
-### 🧪 Exercise 2
+### 🧪 Exercise 2 : Image creation
 
 Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
 
-::: details view the answer
+::: solution
 ```bash
 
 ```
 :::
 
-### 🧪 Exercise 3
+### 🧪 Exercise 3 - Registry management
 
-Create your own registry with a docker image and try to push your HTTPD image to your repository
+Create your own registry with a docker image and try to push your HTTPD image to your registry
 
-::: details view the answer
+::: details solution
 ```bash
 
 ```
@@ -446,17 +446,17 @@ You can use other repository services such as [Harbor](https://goharbor.io/)
 :::
 
 
-### 🧪 Exercise 4
+### 🧪 Exercise 4 - Docker compose basics
 
 Convert your previous HTTPD image  and container with a docker-compose.yml config
 
-::: details view the answer
+::: details solution
 ```bash
 
 ```
 :::
 
-### 🧪 Exercise 5
+### 🧪 Exercise 5 - Practical work
 
 ![docker](../assets/images/exercise_docker.png)
 
@@ -466,7 +466,7 @@ Create a LAMP achitecture with 2 computers over a WiFi network as follows with :
 * a mariaDB or MongoDB service
 * a PHPMyAdmin or mongo-express
 
-::: details view the answer
+::: solution
 ```bash
 
 ```
