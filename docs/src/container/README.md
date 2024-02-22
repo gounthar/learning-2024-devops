@@ -256,21 +256,6 @@ Containerization platforms like Docker provide tools to create, deploy, and mana
   docker stop [OPTIONS] CONTAINER [CONTAINER...]
   ```
 
-
-## 🧪 Exercise 1
-
-Pull HTTP apache server image from docker HUB and start your first web server containerized. Test it on your browser
-
-::: details view the answer
-```bash
-# Pull the Apache HTTP Server image from Docker Hub
-docker pull httpd
-
-# Run the Apache HTTP Server container
-docker run -d -p 8080:80 httpd
-```
-:::
-
 ### Custom image and dockerFile
 
 #### Definition
@@ -361,15 +346,7 @@ Replace placeholders:
 - `repositoryname`: Name for your repository on Docker Hub.
 - `tag`: Tag/version for your image (e.g., `latest`).
 
-## 🧪 Exercise 2
 
-Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
-
-::: details view the answer
-```bash
-
-```
-:::
 
 ### Registry
 
@@ -377,21 +354,6 @@ Create your custom HTTP apache server image in a dockerfile Ubuntu based that is
 
 `Registries` store Docker **images**, acting as **repositories** where users can push, pull, and manage images. 
 `Docker Hub` is a popular public registry, while private registries offer secure storage for proprietary or sensitive images within organizations.
-
-## 🧪 Exercise 3
-
-Create your own registry with a docker image and try to push your HTTPD image to your repository
-
-::: details view the answer
-```bash
-
-```
-:::
-
-::: tip
-You can use other repository services such as [Harbor](https://goharbor.io/)
-:::
-
 
 ## Multi-container 
 
@@ -443,7 +405,48 @@ services:
   docker-compose down
   ```
 
-## 🧪 Exercise 4
+## Exercises
+
+### 🧪 Exercise 1
+
+Pull HTTP apache server image from docker HUB and start your first web server containerized. Test it on your browser
+
+::: details view the answer
+```bash
+# Pull the Apache HTTP Server image from Docker Hub
+docker pull httpd
+
+# Run the Apache HTTP Server container
+docker run -d -p 8080:80 httpd
+```
+:::
+
+### 🧪 Exercise 2
+
+Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
+
+::: details view the answer
+```bash
+
+```
+:::
+
+### 🧪 Exercise 3
+
+Create your own registry with a docker image and try to push your HTTPD image to your repository
+
+::: details view the answer
+```bash
+
+```
+:::
+
+::: tip
+You can use other repository services such as [Harbor](https://goharbor.io/)
+:::
+
+
+### 🧪 Exercise 4
 
 Convert your previous HTTPD image  and container with a docker-compose.yml config
 
@@ -453,7 +456,7 @@ Convert your previous HTTPD image  and container with a docker-compose.yml confi
 ```
 :::
 
-## 🧪 Exercise 5
+### 🧪 Exercise 5
 
 ![docker](../assets/images/exercise_docker.jpg)
 
