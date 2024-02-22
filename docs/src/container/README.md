@@ -458,7 +458,7 @@ Convert your previous HTTPD image  and container with a docker-compose.yml confi
 
 ### 🧪 Exercise 5
 
-![docker](../assets/images/exercise_docker.jpg)
+![docker](../assets/images/exercise_docker.png)
 
 Create a LAMP achitecture with 2 computers over a WiFi network as follows with :
 * an Apache / Nginx service
