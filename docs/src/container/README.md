@@ -411,7 +411,7 @@ services:
 
 Pull HTTP apache server image from docker HUB and start your first web server containerized. Test it on your browser
 
-::: detail solution
+::: details solution
 ```bash
 # Pull the Apache HTTP Server image from Docker Hub
 docker pull httpd
@@ -425,7 +425,7 @@ docker run -d -p 8080:80 httpd
 
 Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
 
-::: solution
+::: details solution
 ```bash
 
 ```
@@ -466,7 +466,7 @@ Create a LAMP achitecture with 2 computers over a WiFi network as follows with :
 * a mariaDB or MongoDB service
 * a PHPMyAdmin or mongo-express
 
-::: solution
+::: details solution
 ```bash
 
 ```
