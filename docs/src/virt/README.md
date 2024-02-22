@@ -345,6 +345,10 @@ VMware ESXi serves as a robust virtualization platform, offering a wide array of
 Install Ubuntu on VirtualBox hypervisor.
 * [https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
 
+:::tip For MacOS users
+please use instead of VirtualBox , [UTM hypervisor (macOS version)](https://github.com/utmapp/UTM)
+:::
+
 ### 🧪  Exercise 2 - Virtualization scripting
 
 Generate a linux virtual machine with VBoxManage
@@ -366,6 +370,10 @@ Generate a linux virtual machine with VBoxManage
 * install ssh
 * install an Apache server
 * Test to reach your website from your Host machine
+
+:::tip For MacOS users
+please use instead of VBoxManage , [`utmctl`](https://docs.getutm.app/scripting/scripting/)
+:::
 
 :::details solution
 ```bash
