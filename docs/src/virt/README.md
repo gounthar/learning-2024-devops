@@ -364,12 +364,16 @@ Generate a linux virtual machine with VBoxManage
 * Add a storage controller (SATA) for the HDD
 * Add the storage created at the begining to the VM
 * Add Alpine ISO to the VM
-* Start alpine VM
+
+:::warning To rework, don't do it
+
+* Configure for installing Alpine on the storage (VBoxManage unattended)
 * Install Virtualbox Additions
 * Use setup-alpine to configure your VM
 * install ssh
 * install an Apache server
 * Test to reach your website from your Host machine
+:::
 
 :::tip For MacOS users
 please use instead of VBoxManage , [`utmctl`](https://docs.getutm.app/scripting/scripting/)

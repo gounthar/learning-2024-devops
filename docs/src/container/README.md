@@ -165,27 +165,7 @@ Unique tool upon:
 
 Containerization platforms like Docker provide tools to create, deploy, and manage containers. Users can build containers from images, run them as instances, manage their lifecycle, and interact with them using container-specific commands.
 
-- **Find ID of an Image:**
-  ```bash
-  docker images
-  ```
-  *Output:*
-  ```
-  REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
-  my_image      latest    abc123def456   2 weeks ago   500MB
-  ```
-
-- **Find ID of a Container:**
-  ```bash
-  docker ps -a
-  ```
-  *Output:*
-  ```
-  CONTAINER ID   IMAGE      COMMAND       CREATED       STATUS       PORTS     NAMES
-  12345abcde     my_image   "/bin/bash"   3 days ago    Exited (0)             my_container
-  ```
-
-- **List Active Containers:**
+- **Active Containers**
   ```bash
   docker ps
   ```
@@ -210,10 +190,34 @@ Containerization platforms like Docker provide tools to create, deploy, and mana
   ```bash
   docker images
   ```
+  - **Pull an Image from a registry:**
+  ```bash
+  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+  ```
+
+  - **Remove an Image:**
+  ```bash
+  docker rmi [OPTIONS] IMAGE [IMAGE...]
+  ```
 
 - **Create a Container from an Image:**
   ```bash
   docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
+  ```
+
+    - **Start a Running Container:**
+  ```bash
+  docker start [OPTIONS] CONTAINER [CONTAINER...]
+  ```
+
+- **Run a Container: ( create+start)**
+  ```bash
+  docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+  ```
+
+  - **Stop a Running Container:**
+  ```bash
+  docker stop [OPTIONS] CONTAINER [CONTAINER...]
   ```
 
 - **Remove a Container:**
@@ -221,26 +225,10 @@ Containerization platforms like Docker provide tools to create, deploy, and mana
   docker rm [OPTIONS] CONTAINER [CONTAINER...]
   ```
 
-- **Run a Container:**
-  ```bash
-  docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
-  ```
-
 - **Port Forwarding (Map Host Port to Container Port):**
   ```bash
   docker run -p HOST_PORT:CONTAINER_PORT IMAGE_NAME
   ```
-
-- **Remove an Image:**
-  ```bash
-  docker rmi [OPTIONS] IMAGE [IMAGE...]
-  ```
-
-- **Pull an Image:**
-  ```bash
-  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
-  ```
-
 - **Execute a Command in a Running Container:**
   ```bash
   docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
@@ -249,11 +237,6 @@ Containerization platforms like Docker provide tools to create, deploy, and mana
 - **View Container Logs:**
   ```bash
   docker logs [OPTIONS] CONTAINER
-  ```
-
-- **Stop a Running Container:**
-  ```bash
-  docker stop [OPTIONS] CONTAINER [CONTAINER...]
   ```
 
 ### Custom image and dockerFile
