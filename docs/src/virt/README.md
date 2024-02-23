@@ -432,6 +432,7 @@ VBoxManage controlvm "$VM_NAME" poweroff
 
 * Install and test an hypervisor type II with VMWare ESXi [Licensing and installation tutorial](https://www.altaro.com/vmware/esxi-free/)
 
+:::tip going further
 * Create a powershell script to create a simple VM on the ESXi node
 :::details solution
 ```powershell
@@ -467,6 +468,7 @@ Start-VM -VM $vmName
 # Disconnect from vCenter or ESXi host
 Disconnect-VIServer -Server $vcServer -Confirm:$false
 ```
+:::
 :::
 
 ### 🧪 Exercice 4 - Vagrant usage
