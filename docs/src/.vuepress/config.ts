@@ -30,10 +30,11 @@ export default defineUserConfig({
           "/virt/", 
           "/container/", 
           "/ci/", 
-          "/prov/", 
-          "/ms/", 
           "/orchestration/", 
+          "/prov/", 
           "/cloud/", 
+          "/ms/", 
+
         ], 
   }),
 

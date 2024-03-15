@@ -8,6 +8,10 @@ Orchestration in the context of DevOps refers to the automated arrangement, coor
 
 Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform designed to automate the deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF). Kubernetes provides a framework for automating the deployment, scaling, and management of containerized applications, allowing developers to focus on writing code rather than managing infrastructure.
 
+### Definition : Pod 
+
+A pod in Kubernetes is the smallest and simplest deployable unit that represents a single instance of a running process or application in the cluster. It encapsulates one or more containers, storage resources, and unique networking options. Containers within a pod share the same network namespace, allowing them to communicate with each other using localhost. Pods serve as the basic building blocks of Kubernetes deployments, providing a logical unit for managing application components and ensuring co-location and co-scheduling of tightly coupled containers. They can be horizontally scaled by creating multiple replicas of the same pod template, distributed across the cluster, to handle increased workload demands or achieve high availability.
+
 ### Architecture
 
 ![arch1](../assets/images/kub.png)
@@ -25,37 +29,51 @@ The architecture of Kubernetes is based on a master-slave model:
   - **Kube Proxy**: Manages network connectivity and routing for containers.
   - **Container Runtime**: Software responsible for running containers, such as Docker or containerd.
 
-### Deploying a Containerized Application
 
-To deploy an application on Kubernetes, you typically create a YAML file describing the desired state of the application. For example, to deploy a simple NGINX web server, you can create a file named `nginx-deployment.yaml` with the following content:
+### Run your first pod in kubernetes
+```bash
+kubectl run nginx --image=nginx
+```
+
+### Create and Deploy a Containerized Application with a manifest
+
+Here is an example of a Kubernetes Pod definition in YAML format:
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-deployment
+  name: example-pod
+  labels:
+    app: example
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
 ```
 
-Then, apply the configuration using the `kubectl apply` command:
+Let's break down this definition:
+- `apiVersion`: Specifies the Kubernetes API version being used. In this case, it's `v1`, which is the core Kubernetes API version.
+- `kind`: Specifies the type of Kubernetes object being defined. Here, it's `Pod`.
+- `metadata`: Contains metadata about the Pod, such as its name and labels.
+  - `name`: The name of the Pod, which is `example-pod` in this case.
+  - `labels`: Key-value pairs that can be used to identify and organize Pods. Here, we've applied a label with the key `app` and value `example`.
+- `spec`: Defines the specification of the Pod, including its containers and other settings.
+  - `containers`: A list of containers to run within the Pod.
+    - `name`: The name of the container, which is `nginx-container`.
+    - `image`: The Docker image to use for the container. Here, it's `nginx:latest`.
+    - `ports`: Specifies the ports that the container exposes.
+      - `containerPort`: The port number that the container listens on. In this example, it's `80`, which is the default port for HTTP traffic.
+
+This Pod definition describes a single Pod named `example-pod`, running a single container based on the NGINX image (`nginx:latest`) that exposes port `80`. You can create this Pod in your Kubernetes cluster by saving the above YAML to a file (e.g., `example-pod.yaml`) and using the `kubectl apply` command:
 
 ```bash
-kubectl apply -f nginx-deployment.yaml
+kubectl apply -f example-pod.yaml
 ```
+
+This will create the Pod in your Kubernetes cluster based on the provided definition.
 
 ### Checking Deployment Status
 
@@ -67,7 +85,28 @@ kubectl get deployments
 
 This command will show you the status of all deployments in the cluster, including the `nginx-deployment` we just created.
 
-### 3. Scaling the Deployment
+
+### Login (should be already done with Rancher Desktop / Podman Desktop)
+```bash
+kubectl config set-context <context>
+```
+
+### Check that it did work
+```bash
+kubectl get pod nginx
+```
+
+### Access your pod from your localhost loopback
+```bash
+kubectl port-forward pods/nginx 8080:80
+```
+
+### Delete everything
+```bash
+kubectl delete pod nginx
+```
+
+### Scaling the Deployment
 
 To scale the deployment, you can use the `kubectl scale` command:
 
