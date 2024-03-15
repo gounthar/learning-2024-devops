@@ -105,6 +105,8 @@ Rancher and Portainer are both tools that provide graphical user interfaces (GUI
 
 ### **Portainer**:
 
+![portainer](../assets/images/portainer.png)
+
    Portainer is an open-source container management tool designed to simplify the deployment and management of containerized applications. While it initially focused on Docker, Portainer has expanded its support to Kubernetes, enabling users to manage Kubernetes clusters through its intuitive web-based interface. Portainer offers features such as cluster management, container lifecycle management, resource utilization monitoring, and role-based access control.
 
    Key features of Portainer in relation to Kubernetes include:
