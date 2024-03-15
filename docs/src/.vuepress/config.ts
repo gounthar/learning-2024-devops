@@ -32,8 +32,8 @@ export default defineUserConfig({
           "/ci/", 
           "/prov/", 
           "/ms/", 
-          //"/orchestration/", 
-          //"/cloud/", 
+          "/orchestration/", 
+          "/cloud/", 
         ], 
   }),
 
