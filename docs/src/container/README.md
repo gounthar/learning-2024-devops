@@ -416,7 +416,7 @@ Create your custom HTTP apache server image in a dockerfile Ubuntu based that is
 
 ### 🧪 Exercise 3 - Registry management
 
-Create your own registry with a docker image and try to push your HTTPD image to your registry
+Create your own repository to the registry DOCKER HUB  and try to push a your docker HTTPD image to your registry
 
 ::: details solution
 ```bash
