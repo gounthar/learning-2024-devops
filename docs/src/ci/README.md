@@ -120,20 +120,6 @@ deploy_job:
   
 - **Executor Types:** Determines how jobs are executed. For instance, Docker executor runs jobs inside Docker containers for isolated and reproducible environments.
 
-
-### 🧪 Build your server
-
-Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a docker-compose.yml that create your platform locally.
-
-1. Create the docker-compose.yml and start your server
-    - [https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose](https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose)
-2. Create a project on the platform
-3. Add a runner that can be the same computer 
-    - [https://docs.gitlab.com/runner/install/](https://docs.gitlab.com/runner/install/)
-    - [https://docs.gitlab.com/ee/tutorials/create_register_first_runner/index.html](https://docs.gitlab.com/ee/tutorials/create_register_first_runner/index.html)
-4. Configure your pipepline
-
-
 ### CI/CD for Developers
 
 CI/CD for developers encompasses several key stages:
@@ -167,10 +153,75 @@ Continuous monitoring post-deployment ensures that the application functions as 
 Unit test your app, make fuctionnal testing, scan for vulnerabilities on your third party libraries ...
 
 
-### 🧪 Exercise
-Please select a project of your choice (JEE, node, python, android...), push the code to gitlab.com and enable  CI/CD by searching for the right tooling , associated docker images and fill up your gitlab-ci.yml to have the 6 CI/CD steps automated ( Build, measure, document...)
+## Exercises
 
-:::details a solution for a simple JAVA project
+### 🧪 Exercice 1 : Build your CI/CD server with docker
+
+Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a docker-compose.yml that create your platform locally.
+
+- Create the docker-compose.yml and start your server
+    - [https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose](https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose)
+- Create a project on the local platform and push some code of your choice
+
+::: details solution
+
+*docker-compose.yml
+```yml
+*gitlab-ci.yml*
+version: '3'
+services:
+  gitlab-server:
+   image: 'gitlab/gitlab-ce:latest'
+   hostname: 'localhost'
+   ports:
+    - '80:80'
+    - '22:22'
+    - '443:4443'
+   environment:
+    GITLAB_OMNIBUS_CONFIG: |
+      external_url 'http://docker.for.win.localhost'
+   restart: always
+   volumes:
+    - 'gitlab-data:/var/opt/gitlab'
+    - 'C:\gitlab-data:/etc/gitlab'
+    - 'gitlab-logs:/var/log/gitlab'
+volumes:
+  gitlab-data:  
+  gitlab-logs:
+```
+:::
+
+### 🧪 Exercice 2 : Register your laptop PC as a `docker` runner to build your pipelines onPremise
+
+Add a runner that can be the same computer 
+    - [https://docs.gitlab.com/runner/install/](https://docs.gitlab.com/runner/install/)
+    - [https://docs.gitlab.com/ee/tutorials/create_register_first_runner/index.html](https://docs.gitlab.com/ee/tutorials/create_register_first_runner/index.html)
+Configure your pipepline (`gitlab-ci.yml`) with a single stage with an simple echo as script and test that the runner is used.
+
+::: details solution
+*add to the previous docker-compose.yml*
+```yml
+  runner:
+   image: 'gitlab/gitlab-runner:latest'
+   hostname: 'localhost'
+   privileged: true
+   environment:
+    - DOCKER_HOST=tcp://docker.for.win.localhost:2375
+   volumes:    
+    - C:\gitlab-runner-data\config:/etc/gitlab-runner
+```
+:::
+
+### 🧪 Exercise 3 - A full pipeline for a project of your choice on a SaaS CI/CD platform
+
+- Please select a project of your choice (JEE, node, python, android...)
+- Push the code to gitlab.com or github.com
+- Write a complete pipeline with CI/CD stage and jobs by searching for the right tooling on docker HUB 
+-  fill up your gitlab-ci.yml or github actions to have the 6 CI/CD steps automated ( Build, measure, document... cf. the course)
+
+:::details 
+
+*A solution for a simple JAVA project*
 [https://gitlab.com/gharbi.tech-courses/devops-sample-java](https://gitlab.com/gharbi.tech-courses/devops-sample-java)
 :::
 
