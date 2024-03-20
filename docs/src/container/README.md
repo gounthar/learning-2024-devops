@@ -409,8 +409,12 @@ docker run -d -p 8080:80 httpd
 Create your custom HTTP apache server image in a dockerfile Ubuntu based that is functionnal locally and you will push it to dockerHUB
 
 ::: details solution
-```bash
+```Dockerfile
+FROM centos
+RUN yum install httpd -y
 
+ENTRYPOINT ["/usr/sbin/httpd","-D","FOREGROUND"]
+EXPOSE 80
 ```
 :::
 
@@ -420,7 +424,8 @@ Create your own repository to the registry DOCKER HUB  and try to push a your do
 
 ::: details solution
 ```bash
-
+docker tag <IMAGE_LOCAL_ID_OR_NAME> <REPOSITORY_NAME_ON_DOCKER_HUB>/<IMAGE_NAME>:<TAG>
+docker push <REPOSITORY_NAME_ON_DOCKER_HUB>/<IMAGE_NAME>:<TAG>
 ```
 :::
 
@@ -432,10 +437,15 @@ You can use other repository services such as [Harbor](https://goharbor.io/)
 ### 🧪 Exercise 4 - Docker compose basics
 
 Convert your previous HTTPD image  and container with a docker-compose.yml config
-
 ::: details solution
-```bash
-
+*docker-compose.yml*
+```yml
+version: '3'
+services:
+  web:    
+   image: 'nginx:latest'
+   ports:
+     - '80:80'
 ```
 :::
 
@@ -450,11 +460,80 @@ Create a LAMP achitecture with 2 computers over a WiFi network as follows with :
 * a PHPMyAdmin or mongo-express
 
 ::: details solution
-```bash
 
+*docker-compose.yml*
+```yml
+version: '3'
+services:
+  web:    
+   image: 'nginx:latest'
+   ports:
+     - '127.0.0.1:80:80'
+   volumes:
+     - ./site:/site
+     - ./site.conf:/etc/nginx/conf.d/site.conf
+   links:
+     - php
+  php:
+   image: php:fpm
+   volumes:
+        - ./site:/site
+  db:
+    image: 'mysql:latest'
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'example'
+      MYSQL_DATABASE: 'db'
+```
+*site.conf*
+```conf
+server {
+    listen 80;
+    index index.php index.html;
+    server_name 127.0.0.1;
+    error_log  /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /site;    
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+}
+```
+*site/index.php*
+```php
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+<?php
+phpinfo();
+$servername = "db";
+$username = "root";
+$password = "example";
+$dbname = "db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+?>
+</body>
+</html>
 ```
 :::
-
 
 ## 📖 Further reading
 - De chroot à Docker, Podman, et maintenant les modules Wasm, 40 ans d'évolution de la conteneurisation by Thomas SCHWENDER
