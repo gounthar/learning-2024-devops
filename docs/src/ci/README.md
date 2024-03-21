@@ -191,6 +191,10 @@ volumes:
 ```
 :::
 
+::: tip Admin root password
+After the service started you can retrieve the initial root password by going to  `/etc/gitlab/initial_root_password` on the gitlab server.
+:::
+
 ### 🧪 Exercice 2 : Register your laptop PC as a `docker` runner to build your pipelines onPremise
 
 Add a runner that can be the same computer 
