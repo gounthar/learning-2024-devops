@@ -514,25 +514,33 @@ server {
 <body>
 
 <h1>My First Heading</h1>
+
 <p>My first paragraph.</p>
 
 <?php
 phpinfo();
-$servername = "db";
-$username = "root";
-$password = "example";
-$dbname = "db";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+try {
+    $mysqlClient = new PDO("mysql:host=db;dbname=db;charset=utf8", "root", "example");
+    $mysqlClient->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
 ?>
+
 </body>
 </html>
+
 ```
+:::
+
+:::tip PDO on php:fpm
+Remember that you need to activate and install the PDO extension of your PHP container
 :::
 
 ## 📖 Further reading

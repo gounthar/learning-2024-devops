@@ -157,6 +157,34 @@ Rancher and Portainer are both tools that provide graphical user interfaces (GUI
    - **Integration with Docker**: Portainer seamlessly integrates with Docker, allowing users to manage both Docker and Kubernetes environments from a single interface.
 
 
+## Exercises
+
+### 🧪 Exercise 1 - Configure docker desktop to enable Kubernetes and Portained GUI
+
+* [Enable kubernetes on your docker desktop installation](https://docs.docker.com/desktop/kubernetes/)
+* [Install Portainer node on your kubernetes server](https://docs.portainer.io/start/install-ce/server/kubernetes/wsl)
+
+
+### 🧪 Exercise 2 - Convert and adapt your manifest yml with Kompose
+
+* [Install Kompose software to convert your compose.yml to a manifest kubernetes](https://kompose.io/installation/#windows)
+
+* Adapt the configuration to deploy successfully your services.
+
+:::tip Some usefull documentation to adapt the manifest converted
+
+* [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
+* [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)
+* [Persistant volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume)
+
+:::
+
+### 🧪 Exercise 3 - Add a new service on your architecture.
+
+Select the service of your choice and try to add it to your manifest. 
+Be creative !
+
+
 
 
 
