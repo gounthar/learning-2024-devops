@@ -223,7 +223,7 @@ Configure your pipepline (`gitlab-ci.yml`) with a single stage with an simple ec
 - Write a complete pipeline with CI/CD stage and jobs by searching for the right tooling on docker HUB 
 -  fill up your gitlab-ci.yml or github actions to have the 6 CI/CD steps automated ( Build, measure, document... cf. the course)
 
-:::details 
+:::details solution
 
 *A solution for a simple JAVA project*
 [https://gitlab.com/gharbi.tech-courses/devops-sample-java](https://gitlab.com/gharbi.tech-courses/devops-sample-java)

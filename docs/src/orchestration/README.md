@@ -82,18 +82,27 @@ You can check the status of the deployment using the `kubectl get` command:
 ```bash
 kubectl get deployments
 ```
-
 This command will show you the status of all deployments in the cluster, including the `nginx-deployment` we just created.
 
 
-### Login (should be already done with Rancher Desktop / Podman Desktop)
+### Login (should be already done with Docker Desktop)
 ```bash
 kubectl config set-context <context>
 ```
 
-### Check that it did work
+### Launch an nginx pod
 ```bash
 kubectl get pod nginx
+```
+
+### List pods
+```bash
+kubectl get pods
+```
+
+### Interact with a Pod
+```bash
+kubectl exec -it <pod_name>   -- /bin/bash
 ```
 
 ### Access your pod from your localhost loopback
@@ -116,7 +125,7 @@ kubectl scale deployment nginx-deployment --replicas=5
 
 This command will scale the `nginx-deployment` to have 5 replicas.
 
-### 4. Exposing the Deployment
+### Exposing the Deployment
 
 To expose the deployment externally, you can create a Kubernetes service:
 
@@ -159,10 +168,11 @@ Rancher and Portainer are both tools that provide graphical user interfaces (GUI
 
 ## Exercises
 
-### 🧪 Exercise 1 - Configure docker desktop to enable Kubernetes and Portained GUI
+### 🧪 Exercise 1 - Configure docker desktop to enable Kubernetes and Portainer GUI
 
 * [Enable kubernetes on your docker desktop installation](https://docs.docker.com/desktop/kubernetes/)
 * [Install Portainer node on your kubernetes server](https://docs.portainer.io/start/install-ce/server/kubernetes/wsl)
+* portainer should be accessible at : [https://localhost:30779/#!/auth](https://localhost:30779/#!/auth)
 
 
 ### 🧪 Exercise 2 - Convert and adapt your manifest yml with Kompose
@@ -177,6 +187,13 @@ Rancher and Portainer are both tools that provide graphical user interfaces (GUI
 * [ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/)
 * [Persistant volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reserving-a-persistentvolume)
 
+:::
+
+::: details solution
+*manifest.yml*
+```yml
+
+```
 :::
 
 ### 🧪 Exercise 3 - Add a new service on your architecture.
