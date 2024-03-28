@@ -226,7 +226,7 @@ Configure your pipepline (`gitlab-ci.yml`) with a single stage with an simple ec
 :::details solution
 
 *A solution for a simple JAVA project*
-[https://gitlab.com/gharbi.tech-courses/devops-sample-java](https://gitlab.com/gharbi.tech-courses/devops-sample-java)
+[https://gitlab.com/brah/devops-sample-java](https://gitlab.com/brah/devops-sample-java)
 :::
 
 ## 📖 Further reading
