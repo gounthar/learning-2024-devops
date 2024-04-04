@@ -136,21 +136,18 @@ Metrics and analytics are collected during the CI/CD pipeline to measure the per
 
 Generate automatically the code documentation as your developper kit for newcomers , as SDK documentation for your client...
 
-#### Test & Secure
+#### Test
 
-Automated testing ensures that changes made to the codebase don't introduce bugs or issues. Security testing helps identify and address vulnerabilities in the code.
+Automated testing ensures that changes made to the codebase don't introduce bugs or issues. 
+
+#### Secure
+
+Unit test your app, make fuctionnal testing, 
+Security testing helps identify and address vulnerabilities in the code.
 
 #### Deploy
 
 The deployment phase involves automating the process of releasing applications into production or staging environments.
-
-#### Monitor
-
-Continuous monitoring post-deployment ensures that the application functions as expected and helps identify any performance or functional issues.
-
-#### Test & Secure
-
-Unit test your app, make fuctionnal testing, scan for vulnerabilities on your third party libraries ...
 
 
 ## Exercises
