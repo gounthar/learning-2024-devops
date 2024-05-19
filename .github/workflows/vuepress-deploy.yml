@@ -1,41 +1,44 @@
-name: Deploy to ghpages
+# This is a GitHub Actions workflow for building and deploying a VuePress site.
+name: Build and Deploy
 
+# This workflow is triggered on push to the main branch, on pull request to any branch, and can be manually triggered.
 on:
-  # trigger deployment on every push to main branch
+  # Trigger on push to main branch
   push:
     branches: [main]
-  # trigger deployment manually
+  # Trigger on pull request to any branch
+  pull_request:
+  # Trigger deployment manually
   workflow_dispatch:
 
 jobs:
+  # This job is named "docs" and runs on the latest version of Ubuntu.
   docs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # This step checks out the repository using the actions/checkout action.
+      - uses: actions/checkout@v4
         with:
-          # fetch all commits to get last updated time or other git log info
           fetch-depth: 0
 
+      # This step sets up Node.js using the actions/setup-node action.
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          # choose node.js version to use
           node-version: 18
 
-      # run build script
+      # This step builds the VuePress site.
       - name: Build VuePress site
         run: cd docs && npm install && npm run build
 
-      # please check out the docs of the workflow for more details
-      # @see https://github.com/crazy-max/ghaction-github-pages
+      # This step deploys the built site to GitHub Pages, but only for push events and manual workflow dispatch events.
+      # It uses the crazy-max/ghaction-github-pages action.
       - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to gh-pages branch
-          target_branch: gh-pages
-          # deploy the default output dir of VuePress
-          build_dir: docs/src/.vuepress/dist
+          target_branch: gh-pages  # The target branch for the deployment is gh-pages.
+          build_dir: docs/src/.vuepress/dist  # The directory containing the built site is docs/src/.vuepress/dist.
         env:
-          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # The GitHub token is used for authentication.
