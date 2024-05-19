@@ -113,6 +113,7 @@ Lastly, the groundbreaking introduction of usernamespace into the Linux kernel i
 ### Software stack architecture
 
 ![architecture](../assets/images/architecture.png)
+[Previous result](https://raw.githubusercontent.com/gounthar/learning-2024-devops/main/docs/src/assets/images/iaas-paas-saas-on-premise.png).
 
 #### Layers of a Software Stack:
 
