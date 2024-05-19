@@ -1,9 +1,11 @@
-name: Deploy to ghpages
+name: Build and Deploy
 
 on:
-  # trigger deployment on every push to main branch
+  # trigger on push to main branch
   push:
     branches: [main]
+  # trigger on pull request to any branch
+  pull_request:
   # trigger deployment manually
   workflow_dispatch:
 
@@ -14,28 +16,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # fetch all commits to get last updated time or other git log info
           fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # choose node.js version to use
           node-version: 18
 
-      # run build script
       - name: Build VuePress site
         run: cd docs && npm install && npm run build
 
-      # please check out the docs of the workflow for more details
-      # @see https://github.com/crazy-max/ghaction-github-pages
+      # Deploy to GitHub Pages only for push events (not for pull requests)
       - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to gh-pages branch
           target_branch: gh-pages
-          # deploy the default output dir of VuePress
           build_dir: docs/src/.vuepress/dist
         env:
-          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
