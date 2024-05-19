@@ -19,16 +19,15 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 * Virtualization basics (virtualbox or vmware)
 
 ## Introduction
+Unlock the power of DevOps with our comprehensive course!
 
-Embark on a transformative journey into the world of DevOps with our comprehensive course! 
+🚀 Explore the core principles of DevOps and its pivotal role in modern software development.
 
-🚀 Delve into the heart of DevOps methodologies, starting with an immersive exploration of its core principles and the pivotal role it plays in modern software development. 
+From mastering virtualization and containerization 📦, creating robust continuous integration and delivery pipelines 🛠️, to navigating cloud infrastructure with virtual machines, Kubernetes, Cloud Run, and serverless technologies ☁️, this course equips you with essential skills.
 
-From mastering virtualization and containerization techniques 📦, creating robust CI/CD pipelines 🛠️, to navigating the intricate landscape of cloud infrastructure with VMs, Kubernetes, Cloud Run, and Serverless technologies ☁️, this course equips you with indispensable skills. 
+Learn to leverage provisioning tools like Ansible and Terraform for efficient infrastructure management, while gaining hands-on experience with orchestration using the Rancher UI.
 
-Uncover the power of provisioning tools like Ansible and Terraform for seamless infrastructure management, while demystifying orchestration with hands-on experience using Rancher UI. 
-
-Engage in practical exercises, real-world case studies, and immersive learning, gaining the technical prowess needed to thrive in the dynamic DevOps landscape. Elevate your expertise and become a proficient DevOps practitioner, ready to drive efficiency, collaboration, and innovation in software development environments! 🌟
+Through practical exercises, real-world case studies, and immersive learning, you'll acquire the technical expertise needed to excel in the dynamic DevOps landscape. Enhance your skills and become a proficient DevOps professional, driving efficiency, collaboration, and innovation in software development environments! 🌟
 
 ### What is DevOps ?
 
