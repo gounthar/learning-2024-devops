@@ -35,7 +35,7 @@ footer: Worldline © 2023 | tech at Worldline
 * 7000+ engineers​ in over 40 countries​
 * A huge & diverse​ tech-stack
 
-![avatar](docs/src/assets/images/cloudbees-logo.png)
+![avatar](./assets/images/cloudbees-logo.png)
 
 **Cloud Native DevSecOps Platform​**
 
@@ -53,7 +53,7 @@ footer: Worldline © 2023 | tech at Worldline
 [🔗 @__brah​](https://twitter.com/__brah)  
 [🔗 cv.gharbi.org](http://cv.gharbi.org)
 
-![avatar](docs/src/assets/images/bruno-avatar.jpeg)
+![avatar](./assets/images/bruno-avatar.jpeg)
 
 **Verachten Bruno**  
 [🔗 @poddingue​](https://twitter.com/poddingue)  
