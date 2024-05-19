@@ -9,7 +9,7 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 
 [https://awl.li/devops](https://awl.li/devops)
 
-[Previous result](../assets/images/missions.png).
+[Previous result](https://raw.githubusercontent.com/gounthar/learning-2024-devops/main/docs/src/assets/images/missions.png).
 
 ## Prerequisites
 
