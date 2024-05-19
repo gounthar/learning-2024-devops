@@ -1,7 +1,7 @@
 # Learning DevOps
 
-# DevOps | Tech at Worldline
-## Who we are ?
+# DevOps 
+## Who are we?
 
 ![avatar](docs/src/assets/images/logo_worldline.png)  
 
