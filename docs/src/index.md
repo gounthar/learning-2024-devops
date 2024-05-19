@@ -20,7 +20,7 @@ features:
     details: CI principles - Gitlab service - Pipeline implementation
   - title: 6. Provisioning
     details: Infrastructure as Code (IaC), Configuration management tools
-footer: Worldline © 2023 | tech at Worldline
+footer: Worldline © 2024 | tech at Worldline
 ---
 
 # DevOps 

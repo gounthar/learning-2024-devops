@@ -2,8 +2,8 @@
   "theme_color": "#f635a4",
   "background_color": "#e8d4f2",
   "display": "standalone",
-  "scope": "/learning-2023-devops/",
-  "start_url": "/learning-2023-devops/index.html",
+  "scope": "/learning-2024-devops/",
+  "start_url": "/learning-2024-devops/index.html",
   "name": "DevOps training",
   "short_name": "DevOps training",
   "icons": [

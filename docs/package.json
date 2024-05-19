@@ -1,14 +1,18 @@
 {
-  "name": "learning-2023-devops",
+  "name": "learning-2024-devops",
   "version": "1.0.0",
   "description": "DevOps training",
   "authors": [
     {
       "name": "Gharbi Ibrahim",
       "email": "ibrahim.gharbi@worldline.com"
+    },
+    {
+      "name": "Verachten Bruno",
+      "email": "gounthar@gmail.com"
     }
   ],
-  "repository": "https://github.com/gbrah/learning-2023-devops",
+  "repository": "https://github.com/gounthar/learning-2024-devops",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"
