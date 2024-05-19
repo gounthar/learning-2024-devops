@@ -11,7 +11,6 @@
 * 7000+ engineers​ in over 40 countries​
 * A huge & diverse​ tech-stack
 
-
 ![avatar](docs/src/assets/images/cloudbees-logo.png)
 
 **Cloud Native DevSecOps Platform​**
