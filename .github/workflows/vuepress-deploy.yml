@@ -1,37 +1,44 @@
+# This is a GitHub Actions workflow for building and deploying a VuePress site.
 name: Build and Deploy
 
+# This workflow is triggered on push to the main branch, on pull request to any branch, and can be manually triggered.
 on:
-  # trigger on push to main branch
+  # Trigger on push to main branch
   push:
     branches: [main]
-  # trigger on pull request to any branch
+  # Trigger on pull request to any branch
   pull_request:
-  # trigger deployment manually
+  # Trigger deployment manually
   workflow_dispatch:
 
 jobs:
+  # This job is named "docs" and runs on the latest version of Ubuntu.
   docs:
     runs-on: ubuntu-latest
 
     steps:
+      # This step checks out the repository using the actions/checkout action.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # This step sets up Node.js using the actions/setup-node action.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # This step builds the VuePress site.
       - name: Build VuePress site
         run: cd docs && npm install && npm run build
 
-      # Deploy to GitHub Pages only for push events (not for pull requests)
+      # This step deploys the built site to GitHub Pages, but only for push events and manual workflow dispatch events.
+      # It uses the crazy-max/ghaction-github-pages action.
       - name: Deploy to GitHub Pages
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          target_branch: gh-pages
-          build_dir: docs/src/.vuepress/dist
+          target_branch: gh-pages  # The target branch for the deployment is gh-pages.
+          build_dir: docs/src/.vuepress/dist  # The directory containing the built site is docs/src/.vuepress/dist.
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # The GitHub token is used for authentication.
