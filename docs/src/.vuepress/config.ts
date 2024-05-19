@@ -4,6 +4,8 @@ import { nprogressPlugin } from "@vuepress/plugin-nprogress";
 import { pwaPlugin } from "@vuepress/plugin-pwa";
 import { seoPlugin } from "vuepress-plugin-seo2";
 import { defineUserConfig } from "vuepress";
+import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+
 
 export default defineUserConfig({
   
@@ -40,7 +42,17 @@ export default defineUserConfig({
 
   plugins: [
     seoPlugin({
-      hostname: "https://worldline.github.io/gbrah/learning-2024-devops",
+      hostname: "https://gounthar.github.io/learning-2024-devops/",
+    }),
+    mdEnhancePlugin({
+      // Enable figure
+      figure: true,
+      // Enable image lazyload
+      imgLazyload: true,
+      // Enable image mark
+      imgMark: true,
+      // Enable image size
+      imgSize: true,
     }),
   ],
 });
