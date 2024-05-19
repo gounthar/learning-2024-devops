@@ -9,6 +9,8 @@ Please list missions of Developers and IT operators from [RFI](https://en.wikipe
 
 [https://awl.li/devops](https://awl.li/devops)
 
+[Previous result](../assets/images/missions.png).
+
 ## Prerequisites
 
 * Network basics (IP, port)
