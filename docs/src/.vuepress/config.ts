@@ -7,7 +7,7 @@ import { defineUserConfig } from "vuepress";
 
 export default defineUserConfig({
   
-  base: "/learning-2024-devops/",
+  base: process.env.BASE_URL || "/learning-2024-devops/",
   port: 3000,
 
   head: [
@@ -40,7 +40,7 @@ export default defineUserConfig({
 
   plugins: [
     seoPlugin({
-      hostname: "https://worldline.github.io/gbrah/learning-2024-devops",
+      hostname: "https://gounthar.github.io/learning-2024-devops/",
     }),
   ],
 });
