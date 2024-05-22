@@ -727,9 +727,9 @@ ls -lR --color=auto "$root_dir/personnages"
 2. Rename the directory "superheroes" to "comics".
 3. Using the "echo" command: write into the file "batman" the content "Bruce Wayne hides behind this character".
 4. Using the "echo" command: append to the file "batman" the content "he lives in Gotham".
-5. Using the "echo" command: write into the file "dardevil" the content "Homer Simpson hides behind this character".
-6. Oh no, it's not Homer. With the "echo" command, overwrite the content of the file "dardevil" with the content "Dardevil is a blind comic character".
-7. Using the "cat" command, in a single command, copy the contents of the "batman" and "dardevil" files into the "mascots/mixdarbat" file.
+5. Using the "echo" command: write into the file "daredevil" the content "Homer Simpson hides behind this character".
+6. Oh no, it's not Homer. With the "echo" command, overwrite the content of the file "daredevil" with the content "daredevil is a blind comic character".
+7. Using the "cat" command, in a single command, copy the contents of the "batman" and "daredevil" files into the "mascots/mixdarbat" file.
 8. Switch to root mode.
 9. Create a user named "fanboy".
 10. Copy the directory "characters" into /home/fanboy.
@@ -756,13 +756,13 @@ echo "Bruce Wayne hides behind this character" > personnages/comics/hommes/cape/
 # 4. Append to the file batman
 echo "he lives in Gotham" >> personnages/comics/hommes/cape/batman
 
-# 5. Write into the file dardevil
+# 5. Write into the file daredevil
 echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans\ cap/daredevil
 
-# 6. Overwrite the content of the file dardevil
-echo "Dardevil is a blind comic character" > personnages/comics/hommes/sans\ cap/daredevil
+# 6. Overwrite the content of the file daredevil
+echo "daredevil is a blind comic character" > personnages/comics/hommes/sans\ cap/daredevil
 
-# 7. Copy the contents of batman and dardevil into mascots/mixdarbat
+# 7. Copy the contents of batman and daredevil into mascots/mixdarbat
 cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans\ cap/daredevil > personnages/mascottes/mixdarbat
 
 # 8. Switch to root mode
