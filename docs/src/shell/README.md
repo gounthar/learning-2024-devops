@@ -723,6 +723,8 @@ ls -lR --color=auto "$root_dir/personnages"
 ```
 :::
 
+### 🧪 Exercise 1-Bis - File System Management
+
 1. It seems that "linuxman" is not a superhero. In fact, he is called "Tux" and should be located in the "mascots" directory. Using the "mv" command, move the file "linuxman" to "tux" in the mascots directory.
 2. Rename the directory "superheroes" to "comics".
 3. Using the "echo" command: write into the file "batman" the content "Bruce Wayne hides behind this character".
