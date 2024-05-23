@@ -775,7 +775,7 @@ cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans cape/da
 sudo su
 
 # 9. Create a user named "fanboy"
-useradd fanboy
+useradd -m fanboy
 
 # 10. Copy the directory characters into /home/fanboy
 cp -r personnages /home/fanboy
