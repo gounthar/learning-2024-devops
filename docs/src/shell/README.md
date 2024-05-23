@@ -673,6 +673,8 @@ Linux subsystem for windows [here](https://learn.microsoft.com/fr-fr/windows/wsl
             └── [-rw-r--r-- ]  spiderman
 ```
 
+Don't you forget to add the right permissions to the script file...
+
 :::details solution
 ```bash
 #!/bin/bash
@@ -701,10 +703,10 @@ files=(
     "$root_dir/personnages/super heros/hommes/cape/batman" 
     "$root_dir/personnages/super heros/hommes/cape/superman"  
     "$root_dir/personnages/super heros/hommes/cape/thor"  
-    "$root_dir/personnages/super heros/hommes/sans cap/antman"  
-    "$root_dir/personnages/super heros/hommes/sans cap/daredevil"  
-    "$root_dir/personnages/super heros/hommes/sans cap/linuxman"  
-    "$root_dir/personnages/super heros/hommes/sans cap/spiderman"  
+    "$root_dir/personnages/super heros/hommes/sans cape/antman"  
+    "$root_dir/personnages/super heros/hommes/sans cape/daredevil"  
+    "$root_dir/personnages/super heros/hommes/sans cape/linuxman"  
+    "$root_dir/personnages/super heros/hommes/sans cape/spiderman"  
 )
 
 # Create directories
@@ -742,12 +744,14 @@ ls -lR --color=auto "$root_dir/personnages"
 15. In the file "14.txt", you will find lines with the word "total". Using the grep command, copy the contents of the file "14.txt" into the file "15.txt" by removing occurrences of the word "total".
 16. Save the last 250 lines of your history in the file "myhistory" by removing any lines where you used the "cd" command. You will use the grep command again.
 
+Don't you forget to add the right permissions to the script file...
+
 :::details solution
 ```bash
 #!/bin/bash
 
 # 1. Move linuxman to tux in mascots directory
-mv personnages/super\ heros/hommes/sans\ cap/linuxman personnages/mascottes/tux
+mv personnages/super\ heros/hommes/sans cape/linuxman personnages/mascottes/tux
 
 # 2. Rename the directory superheroes to comics
 mv personnages/super\ heros personnages/comics
@@ -759,13 +763,13 @@ echo "Bruce Wayne hides behind this character" > personnages/comics/hommes/cape/
 echo "he lives in Gotham" >> personnages/comics/hommes/cape/batman
 
 # 5. Write into the file daredevil
-echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans\ cap/daredevil
+echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans cape/daredevil
 
 # 6. Overwrite the content of the file daredevil
-echo "daredevil is a blind comic character" > personnages/comics/hommes/sans\ cap/daredevil
+echo "daredevil is a blind comic character" > personnages/comics/hommes/sans cape/daredevil
 
 # 7. Copy the contents of batman and daredevil into mascots/mixdarbat
-cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans\ cap/daredevil > personnages/mascottes/mixdarbat
+cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans cape/daredevil > personnages/mascottes/mixdarbat
 
 # 8. Switch to root mode
 sudo su
@@ -869,6 +873,7 @@ image:
 ```
 
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
+
 Add the script as a linux service with the same rule, each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
 ::: tip For MacOS
@@ -919,7 +924,7 @@ sudo systemctl enable folder_creation.timer
 [Github cheatsheet](https://training.github.com/downloads/fr/github-git-cheat-sheet.pdf)
 :::
 
-1. Create an account on gitlab.com
+1. Create an account on github.com
 2. Create a project
 3. push this code to the project
 
