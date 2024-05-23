@@ -949,7 +949,7 @@ RUN service cron start
 
 ```
 
-This `Dockerfile` starts from the `gitpod/workspace-full` image, which is a standard image provided by GitPod that includes a full development environment.
+This `Dockerfile` starts from the `gitpod/workspace-python` image, which is a standard image provided by GitPod that includes a python development environment.
 It then switches to the `root` user to install `cron` and start the `cron` service.
 Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
 Here is an example of what your `.gitpod.yml` could look like:
@@ -971,6 +971,25 @@ tasks:
   # This task makes all .sh files in any subdirectory of the current directory executable.
   - init: chmod +x ./*/*.sh
 
+```
+
+Why would we need to make all script executable? You're maybe working with a Windows machine and you need to make the script executable before running it. The permissions in Windows aren't the same as in Unix-based systems, so you need to set the executable permission explicitly. You could do it through git though, but it's a bit more complicated.
+Git has a feature called Git attributes that allows you to define attributes on a per-path basis. You can use this feature to change the file permissions of specific files in your repository.
+
+To make a file executable in Git, you need to use the `update-index` command with the `--chmod=+x` option. Here's how you can do it:
+  
+```bash
+git update-index --chmod=+x path_to_your_file
+```
+Replace `path_to_your_file` with the path to the file you want to make executable.
+
+After running this command, the file will be marked as executable in the Git repository. The next time you or someone else checks out this file from the Git repository, it will have the executable permission.
+
+Remember to commit this change and push it to the remote repository:
+    
+```bash
+git commit -m "Make file executable"
+git push
 ```
 
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
