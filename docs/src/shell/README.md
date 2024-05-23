@@ -930,8 +930,8 @@ Here is an example of what your `.gitpod.Dockerfile` could look like:
 # This Dockerfile is used to create a custom Gitpod workspace image.
 # Gitpod is a service that provides ready-to-code development environments in the cloud.
 
-# The base image is gitpod/workspace-full, which includes a full development environment.
-FROM gitpod/workspace-full
+# The base image is gitpod/workspace-python, which includes a python development environment.
+FROM gitpod/workspace-python
 
 # Switch to the root user to have the necessary permissions for the following operations.
 USER root
