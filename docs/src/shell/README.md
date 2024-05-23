@@ -973,8 +973,12 @@ tasks:
 
 ```
 
-Why would we need to make all script executable? You're maybe working with a Windows machine and you need to make the script executable before running it. The permissions in Windows aren't the same as in Unix-based systems, so you need to set the executable permission explicitly. You could do it through git though, but it's a bit more complicated.
-Git has a feature called Git attributes that allows you to define attributes on a per-path basis. You can use this feature to change the file permissions of specific files in your repository.
+Why would we need to make all script executable?
+You're maybe working with a Windows machine and you need to make the script executable before running it.
+The permissions in Windows aren't the same as in Unix-based systems, so you need to set the executable permission explicitly.
+You can do it through `git` though, but it's a bit more complicated.
+Git has a feature called Git attributes that allows you to define attributes on a per-path basis.
+You can use this feature to change the file permissions of specific files in your repository.
 
 To make a file executable in Git, you need to use the `update-index` command with the `--chmod=+x` option. Here's how you can do it:
   
@@ -983,7 +987,8 @@ git update-index --chmod=+x path_to_your_file
 ```
 Replace `path_to_your_file` with the path to the file you want to make executable.
 
-After running this command, the file will be marked as executable in the Git repository. The next time you or someone else checks out this file from the Git repository, it will have the executable permission.
+After running this command, the file will be marked as executable in the Git repository.
+The next time you or someone else checks out this file from the Git repository (at least, with operating systems that can deal correctly with file permissions), it will have the executable permission.
 
 Remember to commit this change and push it to the remote repository:
     
