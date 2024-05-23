@@ -779,19 +779,16 @@ mv personnages/super\ heros personnages/comics
 echo "Bruce Wayne hides behind this character" > personnages/comics/hommes/cape/batman
 
 # 4. Append to the file batman
-echo "he lives in Gotham" >> personnages/comics/hommes/cape/batman
+echo "He lives in Gotham" >> personnages/comics/hommes/cape/batman
 
 # 5. Write into the file daredevil
 echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans\ cape/daredevil
 
 # 6. Overwrite the content of the file daredevil
-echo "daredevil is a blind comic character" > personnages/comics/hommes/sans\ cape/daredevil
+echo "DareDevil is a blind comic character" > personnages/comics/hommes/sans\ cape/daredevil
 
 # 7. Copy the contents of batman and daredevil into mascots/mixdarbat
 cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans\ cape/daredevil > personnages/mascottes/mixdarbat
-
-# 8. Switch to root mode
-sudo su
 
 # 9. Create a user named "fanboy"
 useradd -m fanboy
