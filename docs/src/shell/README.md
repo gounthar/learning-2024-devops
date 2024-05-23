@@ -695,7 +695,7 @@ directories=(
     "$root_dir/personnages/super heros/femmes/cape"
     "$root_dir/personnages/super heros/femmes/sans cape"
     "$root_dir/personnages/super heros/hommes/cape"
-    "$root_dir/personnages/super heros/hommes/sans cap"
+    "$root_dir/personnages/super heros/hommes/sans cape"
     "$root_dir/personnages/super heros/femmes/cape/batgirl"
     "$root_dir/personnages/super heros/femmes/cape/wonderwoman"
     "$root_dir/personnages/super heros/femmes/sans cape/electra"
