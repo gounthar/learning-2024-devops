@@ -927,24 +927,50 @@ This can be done by creating a `.gitpod.Dockerfile` in your repository with the 
 Here is an example of what your `.gitpod.Dockerfile` could look like:
 
 ```Dockerfile
-FROM gitpod/workspace-full
+# This Dockerfile is used to create a custom Gitpod workspace image.
+# Gitpod is a service that provides ready-to-code development environments in the cloud.
 
+# The base image is gitpod/workspace-python, which includes a python development environment.
+FROM gitpod/workspace-python
+
+# Switch to the root user to have the necessary permissions for the following operations.
 USER root
 
-# Install cron
-RUN apt-get update && apt-get install -y cron
+# Install cron and tree packages.
+# Cron is a time-based job scheduler in Unix-like operating systems.
+# Tree is a recursive directory listing program that produces a depth-indented listing of files.
+# The apt-get update command is used to download package information from all configured sources.
+# The apt-get install command is used to install the specified packages.
+RUN apt-get update && apt-get install -y cron tree
 
-# Start cron
+# Start the cron service.
+# The service command is used to run a System V init script.
 RUN service cron start
+
 ```
 
 This `Dockerfile` starts from the `gitpod/workspace-full` image, which is a standard image provided by GitPod that includes a full development environment.
-It then switches to the `root` user to install `cron` and start the `cron` service.  Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
+It then switches to the `root` user to install `cron` and start the `cron` service.
+Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
 Here is an example of what your `.gitpod.yml` could look like:
 
 ```yaml
+# This is the .gitpod.yml configuration file for Gitpod.
+# Gitpod is a service that provides ready-to-code development environments in the cloud.
+
+# The 'image' field specifies the Docker image to use for the workspace.
+# The 'file' field under 'image' points to the Dockerfile that defines the Docker image.
 image:
   file: .gitpod.Dockerfile
+
+# The 'tasks' field is a list of tasks to run when the workspace starts.
+# Each task can have 'init' and 'command' fields.
+# The 'init' field is a command that is run when the workspace is first initialized.
+# The 'command' field is a command that is run after the 'init' command.
+tasks:
+  # This task makes all .sh files in any subdirectory of the current directory executable.
+  - init: chmod +x ./*/*.sh
+
 ```
 
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
