@@ -927,19 +927,37 @@ This can be done by creating a `.gitpod.Dockerfile` in your repository with the 
 Here is an example of what your `.gitpod.Dockerfile` could look like:
 
 ```Dockerfile
+# This Dockerfile is used to create a custom Gitpod workspace image.
+# Gitpod is a service that provides ready-to-code development environments in the cloud.
+
+# The base image is gitpod/workspace-full, which includes a full development environment.
 FROM gitpod/workspace-full
 
+# Switch to the root user to have the necessary permissions for the following operations.
 USER root
 
-# Install cron
-RUN apt-get update && apt-get install -y cron
+# Install cron and tree packages.
+# Cron is a time-based job scheduler in Unix-like operating systems.
+# Tree is a recursive directory listing program that produces a depth-indented listing of files.
+# The apt-get update command is used to download package information from all configured sources.
+# The apt-get install command is used to install the specified packages.
+RUN apt-get update && apt-get install -y cron tree
 
-# Start cron
+# Start the cron service.
+# The service command is used to run a System V init script.
 RUN service cron start
+
+# Change the permissions of the scripts to make them executable.
+# The chmod command changes the permissions of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit pattern for the new permissions.
+# The +x option adds the execute permission to the existing permissions of the files.
+# The ./script/*.sh pattern matches all .sh files in the script directory.
+RUN chmod +x ./script/*.sh
+
 ```
 
 This `Dockerfile` starts from the `gitpod/workspace-full` image, which is a standard image provided by GitPod that includes a full development environment.
-It then switches to the `root` user to install `cron` and start the `cron` service.  Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
+It then switches to the `root` user to install `cron` and start the `cron` service.
+Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
 Here is an example of what your `.gitpod.yml` could look like:
 
 ```yaml
