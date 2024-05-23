@@ -810,6 +810,64 @@ crontab -e
 ```
 :::
 
+### 🧪  Exercise 2-Bis - Cron on GitPod
+
+Unfortunately, Gitpod does not support `cron` jobs because it's a cloud-based development environment and each workspace is ephemeral.
+This means that the workspace does not maintain state between sessions, so any `cron` jobs you set up would be lost when the workspace is stopped.
+However, you can install `cron` in your Gitpod workspace using` apt-get.`
+Please note that even though you can install and start the cron daemon, it will not persist after the workspace is stopped.
+Here's how you can install and start cron:
+    
+```bash
+sudo apt-get update
+sudo apt-get install cron
+sudo service cron start
+```
+After running these commands, you can verify that cron is running by using the following command:
+```bash
+sudo service cron status
+```
+You can then create a cron job by creating a script that will add an entry to the crontab:
+```bash
+#!/bin/bash
+
+# Define the crontab entry
+CRON_ENTRY="*/5 * * * * /bin/bash /path/to/your/script.sh /root/folder/\$(date +\%Y-\%m-\%d)"
+
+# Add the entry to crontab
+(crontab -l; echo "$CRON_ENTRY" ) | crontab -
+```
+
+Of course, you will have to modify the script so `/path/to/your/script.sh` points to your earlier `bash` script that creates the root folder "personnages" at your user home.
+
+### 🧪  Exercise 2-Ter - Make Cron available on GitPod from the start
+
+To make `cron` available on GitPod from the start, you need to customize the Docker image used by GitPod.
+I know, we have not talked about Docker yet, but it is a containerization platform that allows you to create custom images with the tools and dependencies you need.
+This can be done by creating a `.gitpod.Dockerfile` in your repository with the necessary commands to install cron.
+Here is an example of what your `.gitpod.Dockerfile` could look like:
+
+```Dockerfile
+FROM gitpod/workspace-full
+
+USER root
+
+# Install cron
+RUN apt-get update && apt-get install -y cron
+
+# Start cron
+RUN service cron start
+```
+
+This `Dockerfile` starts from the `gitpod/workspace-full` image, which is a standard image provided by GitPod that includes a full development environment.
+It then switches to the `root` user to install `cron` and start the `cron` service.  Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuration file. 
+Here is an example of what your `.gitpod.yml` could look like:
+
+```yaml
+image:
+  file: .gitpod.Dockerfile
+```
+
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
 Add the script as a linux service with the same rule, each 5 min with a suffix number ( personnages_9h05, personnages_9h10...)
 
