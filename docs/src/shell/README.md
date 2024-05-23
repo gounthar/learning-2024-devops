@@ -712,10 +712,10 @@ files=(
     "$root_dir/personnages/super heros/hommes/cape/batman"
     "$root_dir/personnages/super heros/hommes/cape/superman"
     "$root_dir/personnages/super heros/hommes/cape/thor"
-    "$root_dir/personnages/super heros/hommes/sans cap/antman"
-    "$root_dir/personnages/super heros/hommes/sans cap/daredevil"
-    "$root_dir/personnages/super heros/hommes/sans cap/linuxman"
-    "$root_dir/personnages/super heros/hommes/sans cap/spiderman"
+    "$root_dir/personnages/super heros/hommes/sans cape/antman"
+    "$root_dir/personnages/super heros/hommes/sans cape/daredevil"
+    "$root_dir/personnages/super heros/hommes/sans cape/linuxman"
+    "$root_dir/personnages/super heros/hommes/sans cape/spiderman"
 )
 
 # Create directories
