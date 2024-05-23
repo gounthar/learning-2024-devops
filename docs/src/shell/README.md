@@ -769,7 +769,8 @@ Don't you forget to add the right permissions to the script file...
 #!/bin/bash
 
 # 1. Move linuxman to tux in mascots directory
-mv personnages/super\ heros/hommes/sans cape/linuxman personnages/mascottes/tux
+mkdir -p personnages/mascottes
+mv personnages/super\ heros/hommes/sans\ cape/linuxman personnages/mascottes/tux
 
 # 2. Rename the directory superheroes to comics
 mv personnages/super\ heros personnages/comics
@@ -781,13 +782,13 @@ echo "Bruce Wayne hides behind this character" > personnages/comics/hommes/cape/
 echo "he lives in Gotham" >> personnages/comics/hommes/cape/batman
 
 # 5. Write into the file daredevil
-echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans cape/daredevil
+echo "Homer Simpson hides behind this character" > personnages/comics/hommes/sans\ cape/daredevil
 
 # 6. Overwrite the content of the file daredevil
-echo "daredevil is a blind comic character" > personnages/comics/hommes/sans cape/daredevil
+echo "daredevil is a blind comic character" > personnages/comics/hommes/sans\ cape/daredevil
 
 # 7. Copy the contents of batman and daredevil into mascots/mixdarbat
-cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans cape/daredevil > personnages/mascottes/mixdarbat
+cat personnages/comics/hommes/cape/batman personnages/comics/hommes/sans\ cape/daredevil > personnages/mascottes/mixdarbat
 
 # 8. Switch to root mode
 sudo su
@@ -804,9 +805,9 @@ chown -R fanboy:fanboy /home/fanboy/personnages
 # 12. Create a symbolic link "persofanboy" pointing to /home/fanboy/characters
 ln -s /home/fanboy/personnages /home/fanboy/persofanboy
 
-# 13. Create a symbolic link "perso_yourname" pointing to /home/yourname/characters
+# 13. Create a symbolic link "perso_gounthar" pointing to /home/yourname/characters
 # Replace "yourname" with your actual username
-ln -s /home/yourname/personnages /home/yourname/perso_yourname
+ln -s /home/yourname/personnages /home/yourname/perso_gounthar
 
 # 14. Save the complete tree structure of /home/fanboy/characters into 14.txt
 ls -R /home/fanboy/personnages > 14.txt
@@ -816,6 +817,7 @@ grep -v "total" 14.txt > 15.txt
 
 # 16. Save the last 250 lines of history into myhistory, removing lines with "cd" command
 grep -v "cd" ~/.bash_history | tail -n 250 > myhistory
+
 ```
 :::
 
