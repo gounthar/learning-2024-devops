@@ -947,12 +947,6 @@ RUN apt-get update && apt-get install -y cron tree
 # The service command is used to run a System V init script.
 RUN service cron start
 
-# Change the permissions of the scripts to make them executable.
-# The chmod command changes the permissions of each given file according to mode, which can be either a symbolic representation of changes to make, or an octal number representing the bit pattern for the new permissions.
-# The +x option adds the execute permission to the existing permissions of the files.
-# The ./script/*.sh pattern matches all .sh files in the script directory.
-RUN chmod +x ./script/*.sh
-
 ```
 
 This `Dockerfile` starts from the `gitpod/workspace-full` image, which is a standard image provided by GitPod that includes a full development environment.
@@ -961,8 +955,22 @@ Next, you need to reference this `Dockerfile` in your `.gitpod.yml` configuratio
 Here is an example of what your `.gitpod.yml` could look like:
 
 ```yaml
+# This is the .gitpod.yml configuration file for Gitpod.
+# Gitpod is a service that provides ready-to-code development environments in the cloud.
+
+# The 'image' field specifies the Docker image to use for the workspace.
+# The 'file' field under 'image' points to the Dockerfile that defines the Docker image.
 image:
   file: .gitpod.Dockerfile
+
+# The 'tasks' field is a list of tasks to run when the workspace starts.
+# Each task can have 'init' and 'command' fields.
+# The 'init' field is a command that is run when the workspace is first initialized.
+# The 'command' field is a command that is run after the 'init' command.
+tasks:
+  # This task makes all .sh files in any subdirectory of the current directory executable.
+  - init: chmod +x ./*/*.sh
+
 ```
 
 ### 🧪 Exercise 3 - SystemD ( Linux machines only)
