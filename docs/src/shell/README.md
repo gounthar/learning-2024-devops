@@ -1053,10 +1053,13 @@ sudo systemctl enable folder_creation.timer
 2. Create a project
 3. push this code to the project
 
+### What about a short quiz now?
+
+[Quiz](https://www.opinionstage.com/page/81b097da-2053-4634-b6b9-70ea5c801236)
 
 ### 🧪  Exercice 5 - onPremise Web server
-
-Create an apache Web server and a MariaDB  by pair with 2 laptops as follow. Serve a simple php content  connected to the MariaDB with [PDO](https://www.php.net/manual/fr/book.pdo.php)
+Create an Apache Web server and a MariaDB by pairing them with 2 laptops as follows.
+Serve a simple PHP content connected to the MariaDB with [PDO](https://www.php.net/manual/fr/book.pdo.php).
 
 ![onpremise](../assets/images/onpremise.png)
 
@@ -1076,6 +1079,8 @@ Use `ping`, `telnet`, `ip`, `netstat` during your services deployment
 
 **(HTTP/1 to HTTP/2 to HTTP/3)**
 <iframe width="560" height="315" src="https://www.youtube.com/embed/a-sBfyiXysI" title="HTTP/1 to HTTP/2 to HTTP/3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+https://github.com/gitpod-io/gitpod/issues/736#issuecomment-658879847
 :::
 
 :::details solution
@@ -1127,6 +1132,114 @@ if ping -c 4 localhost | grep "4 packets transmitted, 4 received" > /dev/null; t
 else
     echo "Ping is not reachable."
 fi
+```
+
+### 🧪  Exercice 5-Bis - GitPod Web server
+
+Let's create a simple web server with an associated database using GitPod.
+What is the main difference between this exercise and the previous one?
+What is the main hiccup you may encounter?
+
+#### 🚀 Make mariadb available outside of GitPod
+
+By default, GitPod workspaces are isolated and not accessible from the public internet.
+This means that services running inside a GitPod workspace are not directly reachable from outside the workspace.
+Go to our [repository](https://github.com/gounthar/DevOpsGitGuide-Shell-Exercice-5-MariaDB) and click on the GitPod button (you have installed the [GitPod extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension), right?).
+If you don't, you can click on the following link: [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/?autostart=true#https://github.com/gounthar/DevOpsGitGuide-Shell-Exercice-5-MariaDB).
+
+There aren't many options to make a database available outside of GitPod.
+One way to achieve this is to use a tunneling service like [ngrok](https://ngrok.com/).
+Ngrok allows you to expose local servers behind NATs and firewalls to the public internet over secure tunnels.
+First, you need to install ngrok in your GitPod workspace.
+You're lucky, it's already [part of your workspace](https://github.com/gounthar/DevOpsGitGuide-Shell-Exercice-5-MariaDB/blob/main/.gitpod.Dockerfile#L47).
+
+Now, you have to open an account on [ngrok](https://ngrok.com/signup), and you will get an authentication token.
+Once you have it, you can add the authentication token to your ngrok configuration using the following command:
+```bash
+ngrok config add-authtoken 2h6McmucvaInNhFsdfsffsd54564Kgf3_7adbmgRez1zbaumkvDkxX
+```
+Once you have ngrok installed, you can expose your MariaDB server to the public internet using the following command:
+```bash
+ngrok tcp 3306
+```
+
+You should then see a public URL that you can use to connect to your MariaDB server from outside GitPod.
+
+```bash
+ngrok                                                                                                                                                                                                                                                                                                                                                                                       (Ctrl+C to quit)
+
+New guides https://ngrok.com/docs/guides/site-to-site-apis/
+
+Session Status                online                                                                                                                                                                                                                                                                                                                                                                        
+Account                       Bruno Verachten (Plan: Free)                                                                                                                                                                                                                                                                                                                                                  
+Version                       3.10.0                                                                                                                                                                                                                                                                                                                                                                        
+Region                        Europe (eu)                                                                                                                                                                                                                                                                                                                                                                   
+Web Interface                 http://127.0.0.1:4040                                                                                                                                                                                                                                                                                                                                                         
+Forwarding                    tcp://6.tcp.eu.ngrok.io:17183 -> localhost:3306
+
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                                                                                                                                                                                                                                                   
+0       0       0.00    0.00    0.00    0.00
+```
+
+For those of you who already have docker, it's now time to test your MariaDB connection from your local machine.
+```bash
+docker run -it --rm mariadb mariadb --host 6.tcp.eu.ngrok.io -P 17183 --user example-user --password
+```
+#### 🚀 Run Apache inside GitPod
+
+To run Apache inside GitPod, you can go to the following [repository](https://github.com/gounthar/DevOpsGitGuide-Shell-Exercice-5-Apache) and click on the GitPod button (you have installed the [GitPod extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension), right?).
+If you don't, you can click on the following link: [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/new/?autostart=true#https://github.com/gounthar/DevOpsGitGuide-Shell-Exercice-5-Apache).
+You should see on the bottom right corner of your screen a message like "A service is available on port 80. Open Preview".
+You should then see a frame open within your current GitPod workspace showing the Apache default page.
+Now in the GitPod terminal, you can run the following command to check the Apache status:
+```bash
+sudo service apache2 status
+```
+You can also test the reachability of Apache using the following command:
+```bash
+curl -s -I localhost:80 | grep "HTTP/1.1 200 OK"
+```
+You can go one level further and test the reachability of Apache using Telnet:
+```bash
+telnet localhost 80
+GET / HTTP/1.0
+
+```
+
+Now, what about trying to connect to your MariaDB server from your Apache server?
+```bash
+mysql -h 6.tcp.eu.ngrok.io -P 17183 -u example-user -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 34
+Server version: 10.6.16-MariaDB-0ubuntu0.22.04.1 Ubuntu 22.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
+```
+
+Or even lower, you can try to connect to your MariaDB server through telnet:
+```bash
+telnet 6.tcp.eu.ngrok.io 17183
+Trying 3.124.142.205...
+Connected to 6.tcp.eu.ngrok.io.
+Escape character is '^]'.
+j
+5.5.5-10.6.16-MariaDB-0ubuntu0.22.04.1!z/x2.0EI�~`Ds:dia-[c_mysql_native_password
+```
+
+Let's access the built-in PHP page from Apache to check the connection to MariaDB.
+```bash
+curl -s localhost/index.php
+```
+
+Nothing is happening. Why?
+Let's have a look at the logs:
+```bash
+sudo tail -f /var/log/apache2/error.log &
 ```
 
 ### 🧪  Exercise 6 - SSH
