@@ -531,6 +531,13 @@ Bringing machine 'alpine_vm' up with 'virtualbox' provider...
     alpine_vm: 192.168.1.24
 ```
 
+The last line should be the IP address of the VM.
+We can then test the HTTPD server by going to the IP address in a browser or on the command line:
+```bash
+curl http://192.168.1.24
+<html><body><h1>It works!</h1></body></html>
+```
+
 :::details solution
 ``` ruby 
 Vagrant.configure("2") do |config|
