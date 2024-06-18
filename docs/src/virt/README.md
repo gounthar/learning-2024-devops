@@ -478,25 +478,105 @@ Generate the same AlpineLinux VM HTTPD server with Vagrant
 * Go to https://app.vagrantup.com/boxes/search and fin the AlpineLinux box
 * And use vagrant command to start it
 
+We should get an output such as:
+```bash
+vagrant.exe up
+Bringing machine 'alpine_vm' up with 'virtualbox' provider...
+==> alpine_vm: Importing base box 'generic/alpine319'...
+==> alpine_vm: Matching MAC address for NAT networking...
+==> alpine_vm: Checking if box 'generic/alpine319' version '4.3.12' is up to date...
+==> alpine_vm: Setting the name of the VM: virtualization_alpine_vm_1718704299141_15386
+==> alpine_vm: Clearing any previously set network interfaces...
+==> alpine_vm: Preparing network interfaces based on configuration...
+    alpine_vm: Adapter 1: nat
+    alpine_vm: Adapter 2: bridged
+==> alpine_vm: Forwarding ports...
+    alpine_vm: 22 (guest) => 2222 (host) (adapter 1)
+==> alpine_vm: Running 'pre-boot' VM customizations...
+==> alpine_vm: Booting VM...
+==> alpine_vm: Waiting for machine to boot. This may take a few minutes...
+    alpine_vm: SSH address: 127.0.0.1:2222
+    alpine_vm: SSH username: vagrant
+    alpine_vm: SSH auth method: private key
+    alpine_vm:
+    alpine_vm: Vagrant insecure key detected. Vagrant will automatically replace
+    alpine_vm: this with a newly generated keypair for better security.
+    alpine_vm:
+    alpine_vm: Inserting generated public key within guest...
+==> alpine_vm: Machine booted and ready!
+==> alpine_vm: Checking for guest additions in VM...
+==> alpine_vm: Configuring and enabling network interfaces...
+==> alpine_vm: Running provisioner: shell...
+    alpine_vm: Running: inline script
+    alpine_vm: fetch https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+    alpine_vm: fetch https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+    alpine_vm: v3.18.6-263-g77db018514d [https://mirrors.edge.kernel.org/alpine/v3.18/main]
+    alpine_vm: v3.18.6-263-g77db018514d [https://mirrors.edge.kernel.org/alpine/v3.18/community]
+    alpine_vm: OK: 20135 distinct packages available
+    alpine_vm: fetch https://mirrors.edge.kernel.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+    alpine_vm: fetch https://mirrors.edge.kernel.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+    alpine_vm: (1/4) Installing apr (1.7.4-r0)
+    alpine_vm: (2/4) Installing libexpat (2.6.2-r0)
+    alpine_vm: (3/4) Installing apr-util (1.6.3-r1)
+    alpine_vm: (4/4) Installing apache2 (2.4.59-r0)
+    alpine_vm: Executing apache2-2.4.59-r0.pre-install
+    alpine_vm: Executing busybox-1.36.1-r15.trigger
+    alpine_vm: OK: 153 MiB in 121 packages
+    alpine_vm:  * Caching service dependencies ... [ ok ]
+    alpine_vm:  * Starting apache2 ... [ ok ]
+==> alpine_vm: Running action triggers after up ...
+==> alpine_vm: Running trigger: Show IP Address...
+==> alpine_vm: Getting the IP address of the VM...
+    alpine_vm: Running: inline script
+    alpine_vm: 192.168.1.24
+```
+
+The last line should be the IP address of the VM.
+We can then test the HTTPD server by going to the IP address in a browser or on the command line:
+```bash
+curl http://192.168.1.24
+<html><body><h1>It works!</h1></body></html>
+```
+
 :::details solution
 ``` ruby 
+# Vagrantfile for configuring a virtual machine with Apache server
 Vagrant.configure("2") do |config|
+  # Define a virtual machine named "alpine_vm"
   config.vm.define "alpine_vm" do |vm|
-    vm.vm.box = "generic/alpine312"
-    vm.vm.network "private_network", type: "dhcp"
+    # Use the "generic/alpine319" box for the virtual machine
+    vm.vm.box = "generic/alpine319"
+    # Configure the virtual machine to use a public network
+    vm.vm.network "public_network"
+    # Configure the provider for the virtual machine
     vm.vm.provider "virtualbox" do |vb|
+      # Set the memory for the virtual machine to 1024 MB
       vb.memory = "1024"
+      # Set the number of CPUs for the virtual machine to 1
       vb.cpus = 1
     end
 
     # Provisioning
     vm.vm.provision "shell", inline: <<-SHELL
-      # Install VirtualBox Guest Additions
-      apk add --no-cache virtualbox-guest-additions virtualbox-guest-modules-virt
-
-      # Install SSH
-      apk add --no-cache my_software_to_install
+      # Update the package list
+      apk update
+      # Install Apache server
+      apk add --no-cache apache2
+      # Configure Apache to listen on all IP addresses
+      sed -i 's/^Listen .*/Listen 0.0.0.0:80/' /etc/apache2/httpd.conf
+      # Restart Apache to apply the changes
+      rc-service apache2 restart
     SHELL
+
+    # Trigger to print the IP address after the machine is up
+    vm.trigger.after :up do |trigger|
+      # Name the trigger as "Show IP Address"
+      trigger.name = "Show IP Address"
+      # Display information about the trigger
+      trigger.info = "Getting the IP address of the VM..."
+      # Run a command on the virtual machine to get and print the IP address
+      trigger.run_remote = {inline: "ip addr show eth1 | grep 'inet ' | awk '{ print $2}' | cut -f1 -d'/'"}
+    end
   end
 end
 ```
