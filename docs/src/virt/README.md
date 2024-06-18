@@ -540,30 +540,41 @@ curl http://192.168.1.24
 
 :::details solution
 ``` ruby 
+# Vagrantfile for configuring a virtual machine with Apache server
 Vagrant.configure("2") do |config|
+  # Define a virtual machine named "alpine_vm"
   config.vm.define "alpine_vm" do |vm|
+    # Use the "generic/alpine319" box for the virtual machine
     vm.vm.box = "generic/alpine319"
-    vm.vm.network "public_network"  # Use public network
+    # Configure the virtual machine to use a public network
+    vm.vm.network "public_network"
+    # Configure the provider for the virtual machine
     vm.vm.provider "virtualbox" do |vb|
+      # Set the memory for the virtual machine to 1024 MB
       vb.memory = "1024"
+      # Set the number of CPUs for the virtual machine to 1
       vb.cpus = 1
     end
 
     # Provisioning
     vm.vm.provision "shell", inline: <<-SHELL
+      # Update the package list
       apk update
-      # Install SSH
+      # Install Apache server
       apk add --no-cache apache2
       # Configure Apache to listen on all IP addresses
       sed -i 's/^Listen .*/Listen 0.0.0.0:80/' /etc/apache2/httpd.conf
-
       # Restart Apache to apply the changes
       rc-service apache2 restart
     SHELL
+
     # Trigger to print the IP address after the machine is up
     vm.trigger.after :up do |trigger|
+      # Name the trigger as "Show IP Address"
       trigger.name = "Show IP Address"
+      # Display information about the trigger
       trigger.info = "Getting the IP address of the VM..."
+      # Run a command on the virtual machine to get and print the IP address
       trigger.run_remote = {inline: "ip addr show eth1 | grep 'inet ' | awk '{ print $2}' | cut -f1 -d'/'"}
     end
   end
