@@ -8,9 +8,7 @@ CI/CD, or Continuous Integration/Continuous Deployment, is a software developmen
 
 **"Continuous integration is a software development practice where members of a team integrate their work frequently... verified by an automated build (including tests) to detect integration errors"**, *Martin fowler*
 
-
 Integration in the context of CI/CD involves aligning and merging development efforts from various stages (such as development, staging, and production) to ensure that code changes seamlessly transition through these environments, maintaining consistency and reliability.
-
 
 * **Development Environment**: Developers work on their individual branches, integrating code changes regularly into a shared development branch.
 Continuous integration ensures that code changes from multiple developers align and work together in this environment.
@@ -165,25 +163,24 @@ Create your gitlab onPremise service. Because gitlab is fully dockerized you are
 *docker-compose.yml
 ```yml
 *gitlab-ci.yml*
-version: '3'
 services:
   gitlab-server:
-   image: 'gitlab/gitlab-ce:latest'
-   hostname: 'localhost'
-   ports:
-    - '80:80'
-    - '22:22'
-    - '443:4443'
-   environment:
-    GITLAB_OMNIBUS_CONFIG: |
-      external_url 'http://docker.for.win.localhost'
-   restart: always
-   volumes:
-    - 'gitlab-data:/var/opt/gitlab'
-    - 'C:\gitlab-data:/etc/gitlab'
-    - 'gitlab-logs:/var/log/gitlab'
+    image: 'gitlab/gitlab-ce:latest'
+    hostname: 'localhost'
+    ports:
+      - '80:80'
+      - '22:22'
+      - '443:4443'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://docker.for.win.localhost'
+    restart: always
+    volumes:
+      - 'gitlab-data:/var/opt/gitlab'
+      - './gitlab-data:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
 volumes:
-  gitlab-data:  
+  gitlab-data:
   gitlab-logs:
 ```
 :::
