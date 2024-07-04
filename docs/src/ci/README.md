@@ -8,9 +8,7 @@ CI/CD, or Continuous Integration/Continuous Deployment, is a software developmen
 
 **"Continuous integration is a software development practice where members of a team integrate their work frequently... verified by an automated build (including tests) to detect integration errors"**, *Martin fowler*
 
-
 Integration in the context of CI/CD involves aligning and merging development efforts from various stages (such as development, staging, and production) to ensure that code changes seamlessly transition through these environments, maintaining consistency and reliability.
-
 
 * **Development Environment**: Developers work on their individual branches, integrating code changes regularly into a shared development branch.
 Continuous integration ensures that code changes from multiple developers align and work together in this environment.
@@ -39,6 +37,158 @@ Integration in the production environment ensures a smooth transition of tested 
 | **AWS CodePipeline**|                           | ✓                    | ✓                    |                      |                      |
 | **Google Cloud Build** |                        | ✓                    | ✓                    |                      |                      |
 
+## CI/CD Platform (GitHub Actions)
+
+GitHub Actions is a CI/CD platform provided by GitHub that allows you to automate, customize, and execute your software development workflows right in your GitHub repository. It enables you to build, test, and deploy your code directly from GitHub. You can write individual tasks, called actions, and combine them to create a custom workflow.
+
+Workflows are custom automated processes that you can set up in your repository to build, test, package, release, or deploy any code project on GitHub. These workflows are made up of one or more jobs and can be scheduled or triggered by an event.
+
+### CI/CD features
+
+#### Workflows and Actions
+
+Workflows are defined in your repository as YAML files in the `.github/workflows` directory. Each workflow can contain one or more jobs, and each job runs a series of steps. A step can be either a set of shell commands or an action. Actions are reusable units of code that can be shared and used across different workflows.
+
+Here's an example of a simple GitHub Actions workflow for a Node.js application:
+
+```yaml
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+```
+This workflow runs a build and test process for a Node.js application on three different versions of Node.js whenever there's a push or pull request to the master branch.
+
+### Marketplace
+
+GitHub provides a marketplace where developers can create, share, and use actions. This makes it easy to extend your CI/CD pipelines with functionality created by others. There are actions for deploying to various cloud platforms, running tests, code linters, security scanners, and much more.
+
+### Integration with GitHub Features
+
+GitHub Actions is deeply integrated with other GitHub features. You can use the `GITHUB_TOKEN` to make authenticated API calls, automatically manage issues, pull requests, and more. You can also use the secrets storage to handle sensitive data like API keys, and the artifact storage to store build results.
+
+### CI/CD for Developers
+
+#### Build
+
+In the build stage, you can compile your code, create containers, or package your application. You can use actions to set up your build environment, cache dependencies, and more.
+
+#### Test
+
+You can run your tests in parallel, report test results, and automatically fail a workflow if a test fails. There are actions available for many testing tools and services.
+
+#### Deploy
+
+You can deploy your application to various cloud platforms, on-premises servers, or even GitHub Pages. There are actions available for many deployment tools and services.
+
+### Limitations and Considerations
+
+While GitHub Actions provides a robust platform for CI/CD, there are some limitations and considerations to keep in mind:
+
+- Free usage of GitHub Actions is limited, and public repositories get a certain number of free minutes per month.
+- While you can run actions on a variety of platforms (Windows, Linux, macOS), not all features are available on all platforms.
+- While GitHub Actions is powerful, it might not cover all use cases. For more complex workflows, you might need to use a more feature-rich CI/CD platform like GitLab.
+
+### Dependency Management in GitHub
+
+Dependency management is a critical aspect of software development. It involves keeping track of all the software libraries and packages that your project depends on, their versions, and ensuring they are up-to-date and secure.
+
+GitHub provides several tools and features to help manage dependencies in your projects:
+
+#### Dependabot
+
+Dependabot is a tool provided by GitHub that helps you keep your dependencies up-to-date. It automatically checks your project for outdated dependencies and opens pull requests to update them.
+
+Dependabot supports several languages and package managers, including JavaScript (`npm`, `yarn`), Python (`pip`), Java (Maven), Ruby (Bundler), PHP (Composer), .NET (NuGet), and others.
+
+Dependabot also provides security updates. When GitHub detects a vulnerable dependency in your repository, Dependabot can automatically open a pull request to update the insecure dependency to a fixed version.
+
+To enable Dependabot security updates, you can go to the Security & analysis settings of your repository and under the Dependabot alerts, click Enable.
+
+#### Renovate
+
+Renovate is an open-source tool that helps automate dependency updates. It works similarly to Dependabot but offers more configuration options. Renovate can be self-hosted or used as a GitHub App.
+
+Renovate supports a wide range of languages and package managers, including Docker, Kubernetes, Terraform, and others, in addition to those supported by Dependabot.
+
+Renovate checks for updates and opens pull requests with updates. You can configure the frequency of updates, grouping of updates, and many other settings.
+
+To use Renovate, you can install the Renovate GitHub App, or use the self-hosted Renovate CLI tool.
+
+### Updatecli
+
+Updatecli is an open-source tool designed to automate the process of updating dependencies in configuration files. It is particularly useful in a CI/CD context where dependencies need to be regularly updated to their latest versions.
+
+Updatecli works by defining a set of rules in a configuration file. These rules specify the source to fetch the latest version, the conditions to validate the new version, and the targets to update with the new version.
+
+Here's a basic example of an Updatecli configuration file:
+
+```yaml
+title: "Update Docker Image Version"
+sources:
+  dockerVersion:
+    kind: dockerDigest
+    spec:
+      image: "ghcr.io/owner/repo"
+      tag: "latest"
+conditions:
+  isNotSnapshot:
+    kind: shell
+    spec:
+      command: "echo '{{ source \"dockerVersion\" }}' | grep -v SNAPSHOT"
+targets:
+  updateDockerfile:
+    kind: yaml
+    spec:
+      file: "Dockerfile"
+      key: "image"
+```      
+In this example, Updatecli fetches the latest Docker image digest from the GitHub Container Registry, checks that it's not a snapshot version, and then updates the Dockerfile with the new digest.  Updatecli can be run locally or as part of a CI/CD pipeline. It supports a variety of sources (Docker, Helm, GitHub, etc.), conditions (Shell, File, etc.), and targets (YAML, JSON, Shell, etc.), making it a flexible tool for updating dependencies in various types of projects.  To use Updatecli, you can install it locally using the provided binaries, or use the Docker image in a CI/CD pipeline.
+
+###  Enhancing a Python Function and Adding Unit Tests
+
+Fork and clone the [following repository](https://github.com/gounthar/learning-2024-devops-cicd-github-python.git).
+In this exercise, you will need to modify existing Python code and submit your changes via a Pull Request (PR).
+
+#### Task 1: Modify the `add2` Function
+
+Currently, the `add2` function in `calc.py` adds two values together. Your task is to modify this function so that it can take an unlimited number of arguments and add them all together. Remember to handle the case where one of the arguments is a string.
+
+#### Task 2: Add Unit Tests
+
+After modifying the `add2` function, you need to add additional unit tests in `test_calc.py` to verify that your new function works correctly. Make sure to test several cases, including when no arguments are provided, when a single argument is provided, when multiple arguments are provided, and when one of the arguments is a string.
+
+#### Task 3: Update Documentation
+
+Finally, update the documentation in the code (comments) to reflect the changes you have made. Ensure that the documentation is clear and precise.
+
+Once you have completed these tasks, create a new branch, commit your changes, and submit a PR. Be sure to include a detailed description of your changes in both your commit message and in the description of your PR.
+
+Good luck!
+
+In the next section, we will discuss GitLab, another popular CI/CD platform that offers more advanced features and capabilities.
 
 ## CI/CD Platform (GitLab)
 
@@ -116,9 +266,11 @@ deploy_job:
 
 ![cicd](../assets/images/runners.png)
 
-- **GitLab Runner:** independant processing power that executes CI/CD jobs defined in the `gitlab-ci.yml`. It can be installed on various platforms and supports different executor types like Shell, Docker, Kubernetes, etc.
+- **GitLab Runner:** independent processing power that executes CI/CD jobs defined in the `gitlab-ci.yml`. It can be installed on various platforms and supports different executor types like Shell, Docker, Kubernetes, etc.
   
 - **Executor Types:** Determines how jobs are executed. For instance, Docker executor runs jobs inside Docker containers for isolated and reproducible environments.
+
+You may have a look at this article I wrote years ago: https://bruno.verachten.fr/2021/01/11/Arm-your-ci-with-fruits/ .
 
 ### CI/CD for Developers
 
@@ -154,36 +306,34 @@ The deployment phase involves automating the process of releasing applications i
 
 ### 🧪 Exercice 1 : Build your CI/CD server with docker
 
-Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a docker-compose.yml that create your platform locally.
+Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a `docker-compose.yml` that will launch your platform locally.
 
-- Create the docker-compose.yml and start your server
-    - [https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose](https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose)
-- Create a project on the local platform and push some code of your choice
+- Clone [the repository](https://github.com/gounthar/learning-2024-devops-cicd-gitlab) I prepared for you if you have an Intel-based machine, or [use GitPod](https://gitpod.io/?autostart=true#https://github.com/gounthar/learning-2024-devops-cicd-gitlab) to get started. There is more than 1 GB of data to download, so choose your weapon wisely. It's not abnormal to have to wait 10 minutes or so before getting something to work.
+- Create a project on the local (or GitPod) platform and reference our [Python project](https://github.com/gounthar/learning-2024-devops-cicd-github-python) (your fork, to be exact).
 
 ::: details solution
 
 *docker-compose.yml
 ```yml
 *gitlab-ci.yml*
-version: '3'
 services:
   gitlab-server:
-   image: 'gitlab/gitlab-ce:latest'
-   hostname: 'localhost'
-   ports:
-    - '80:80'
-    - '22:22'
-    - '443:4443'
-   environment:
-    GITLAB_OMNIBUS_CONFIG: |
-      external_url 'http://docker.for.win.localhost'
-   restart: always
-   volumes:
-    - 'gitlab-data:/var/opt/gitlab'
-    - 'C:\gitlab-data:/etc/gitlab'
-    - 'gitlab-logs:/var/log/gitlab'
+    image: 'gitlab/gitlab-ce:latest'
+    hostname: 'localhost'
+    ports:
+      - '80:80'
+      - '22:22'
+      - '443:4443'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://docker.for.win.localhost'
+    restart: always
+    volumes:
+      - 'gitlab-data:/var/opt/gitlab'
+      - './gitlab-data:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
 volumes:
-  gitlab-data:  
+  gitlab-data:
   gitlab-logs:
 ```
 :::
@@ -225,5 +375,29 @@ Configure your pipepline (`gitlab-ci.yml`) with a single stage with an simple ec
 *A solution for a simple JAVA project*
 [https://gitlab.com/brah/devops-sample-java](https://gitlab.com/brah/devops-sample-java)
 :::
+
+## CI/CD Platform (Jenkins)
+
+Jenkins is an open-source automation server that enables developers around the world to reliably build, test, and deploy their software. It offers hundreds of plugins to support building and testing virtually any project, making it one of the most versatile and widely used CI/CD tools in the market.
+
+### Key Features of Jenkins
+
+- **Extensibility:** Jenkins can be extended via its vast ecosystem of plugins, allowing integration with virtually any tool in the CI/CD toolchain.
+- **Flexibility:** It supports various SCM tools including Git, Mercurial, and SVN. Jenkins can be configured according to complex workflows.
+- **Distributed Nature:** Jenkins can distribute work across multiple machines for faster builds, tests, and deployments.
+- **Easy Configuration:** Jenkins can be configured via its web interface, which includes error checks and a built-in help function.
+
+### Setting Up Jenkins
+
+To get started with Jenkins, you typically install it on a server where the central build will take place. Jenkins can be installed on various operating systems, including Linux, Windows, and macOS.
+
+### Jenkins Pipeline
+
+A Jenkins Pipeline is a suite of plugins that supports implementing and integrating continuous delivery pipelines into Jenkins. A pipeline has an extensible automation server for creating simple or complex delivery pipelines "as code" via the Pipeline DSL (Domain-specific Language).
+
+### 🧪 Exercise 4 - Building a Python Application with PyInstaller
+
+It's as easy as following [this tutorial](https://www.jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/#build-a-python-app-with-pyinstaller).
+
 
 ## 📖 Further reading
