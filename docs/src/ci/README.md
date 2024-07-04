@@ -266,9 +266,11 @@ deploy_job:
 
 ![cicd](../assets/images/runners.png)
 
-- **GitLab Runner:** independant processing power that executes CI/CD jobs defined in the `gitlab-ci.yml`. It can be installed on various platforms and supports different executor types like Shell, Docker, Kubernetes, etc.
+- **GitLab Runner:** independent processing power that executes CI/CD jobs defined in the `gitlab-ci.yml`. It can be installed on various platforms and supports different executor types like Shell, Docker, Kubernetes, etc.
   
 - **Executor Types:** Determines how jobs are executed. For instance, Docker executor runs jobs inside Docker containers for isolated and reproducible environments.
+
+You may have a look at this article I wrote years ago: https://bruno.verachten.fr/2021/01/11/Arm-your-ci-with-fruits/ .
 
 ### CI/CD for Developers
 
@@ -304,11 +306,10 @@ The deployment phase involves automating the process of releasing applications i
 
 ### 🧪 Exercice 1 : Build your CI/CD server with docker
 
-Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a docker-compose.yml that create your platform locally.
+Create your gitlab onPremise service. Because gitlab is fully dockerized you are able to create a `docker-compose.yml` that will launch your platform locally.
 
-- Create the docker-compose.yml and start your server
-    - [https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose](https://docs.gitlab.com/ee/install/docker.html#install-gitlab-using-docker-compose)
-- Create a project on the local platform and push some code of your choice
+- Clone [the repository](https://github.com/gounthar/learning-2024-devops-cicd-gitlab) I prepared for you if you have an Intel-based machine, or [use GitPod](https://gitpod.io/?autostart=true#https://github.com/gounthar/learning-2024-devops-cicd-gitlab) to get started. There is more than 1 GB of data to download, so choose your weapon wisely. It's not abnormal to have to wait 10 minutes or so before getting something to work.
+- Create a project on the local (or GitPod) platform and reference our [Python project](https://github.com/gounthar/learning-2024-devops-cicd-github-python) (your fork, to be exact).
 
 ::: details solution
 
@@ -374,5 +375,29 @@ Configure your pipepline (`gitlab-ci.yml`) with a single stage with an simple ec
 *A solution for a simple JAVA project*
 [https://gitlab.com/brah/devops-sample-java](https://gitlab.com/brah/devops-sample-java)
 :::
+
+## CI/CD Platform (Jenkins)
+
+Jenkins is an open-source automation server that enables developers around the world to reliably build, test, and deploy their software. It offers hundreds of plugins to support building and testing virtually any project, making it one of the most versatile and widely used CI/CD tools in the market.
+
+### Key Features of Jenkins
+
+- **Extensibility:** Jenkins can be extended via its vast ecosystem of plugins, allowing integration with virtually any tool in the CI/CD toolchain.
+- **Flexibility:** It supports various SCM tools including Git, Mercurial, and SVN. Jenkins can be configured according to complex workflows.
+- **Distributed Nature:** Jenkins can distribute work across multiple machines for faster builds, tests, and deployments.
+- **Easy Configuration:** Jenkins can be configured via its web interface, which includes error checks and a built-in help function.
+
+### Setting Up Jenkins
+
+To get started with Jenkins, you typically install it on a server where the central build will take place. Jenkins can be installed on various operating systems, including Linux, Windows, and macOS.
+
+### Jenkins Pipeline
+
+A Jenkins Pipeline is a suite of plugins that supports implementing and integrating continuous delivery pipelines into Jenkins. A pipeline has an extensible automation server for creating simple or complex delivery pipelines "as code" via the Pipeline DSL (Domain-specific Language).
+
+### 🧪 Exercise 4 - Building a Python Application with PyInstaller
+
+It's as easy as following [this tutorial](https://www.jenkins.io/doc/tutorials/build-a-python-app-with-pyinstaller/#build-a-python-app-with-pyinstaller).
+
 
 ## 📖 Further reading
